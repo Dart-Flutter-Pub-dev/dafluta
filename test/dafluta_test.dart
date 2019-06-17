@@ -22,6 +22,13 @@ void main() {
     expect(result.isSuccessful, isTrue);
     expect(result.response.body, isEmpty);
   });
+
+  test('non existent end point', () async {
+    var nonExistent = NonExistentEndPoint();
+    var result = await nonExistent.call();
+
+    expect(result.hasFailed, isTrue);
+  });
 }
 
 class GetDog extends ValueEndPoint<Dog> {
@@ -39,6 +46,14 @@ class GetDog extends ValueEndPoint<Dog> {
 
 class GetNothing extends EmptyEndPoint {
   static const String URL = 'https://testest.free.beeceptor.com/';
+
+  Future<EndPointResult> call() {
+    return super.get(URL);
+  }
+}
+
+class NonExistentEndPoint extends EmptyEndPoint {
+  static const String URL = 'https://nonexistent.com';
 
   Future<EndPointResult> call() {
     return super.get(URL);

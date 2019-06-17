@@ -32,6 +32,10 @@ class EndPointResult<T> {
   EndPointResult({this.response, this.value, this.exception});
 
   bool get isSuccessful {
-    return (response.statusCode >= 200) && (response.statusCode <= 299);
+    return (response != null) &&
+        (response.statusCode >= 200) &&
+        (response.statusCode <= 299);
   }
+
+  bool get hasFailed => (exception != null);
 }
