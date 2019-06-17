@@ -1,8 +1,8 @@
 name: dafluta
 description: A set of Flutter utils
-version: 0.0.3
+version: 0.0.4
 author: Mauricio Togneri <mauricio.togneri@gmail.com>
-homepage: https://mauriciotogneri.com
+homepage: https://github.com/mauriciotogneri/dafluta
 
 environment:
   sdk: ">=2.1.0 <3.0.0"
