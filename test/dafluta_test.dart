@@ -1,31 +1,45 @@
-import 'dart:io';
+import 'dart:convert' as Json;
 import 'package:dafluta/src/http/endpoint.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:http/http.dart';
+import 'package:http/src/response.dart';
+import 'package:meta/meta.dart';
 
 void main() {
-  test('http test', () {
+  test('http test', () async {
     var getDog = GetDog();
-    getDog.execute((result) {
-      print(result);
-    }, (error) {
-      print(error);
-    });
+    var response = await getDog.run();
 
-    sleep(Duration(seconds: 5));
+    if (response.isSuccessful) {
+      print('Ok: ${response.response}');
+      print('Ok: ${response.value}');
+    } else {
+      print('Fail: ${response.exception}');
+    }
   });
 }
 
-class GetDog extends EndPoint<String> {
+class GetDog extends EndPoint<Dog> {
   static const String URL = 'https://dog.ceo/api/breeds/image/random';
 
+  Future<EndPointResponse> run() {
+    return super.get(URL);
+  }
+
   @override
-  void execute(void success(String dog), void error(Response response)) async {
-    try {
-      var response = await super.get(URL);
-      success(response.body);
-    } on Response catch (e) {
-      error(e);
-    }
+  Dog convert(Response response) {
+    return Dog.json(response.body);
+  }
+}
+
+@immutable
+class Dog {
+  final String url;
+
+  Dog(this.url);
+
+  static Dog json(String json) {
+    var data = Json.jsonDecode(json);
+
+    return Dog(data['message']);
   }
 }
