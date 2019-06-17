@@ -4,6 +4,9 @@ Example:
 --------
 
 ```dart
+var getWebPage = GetWebPage();
+var result = await getWebPage.call();
+
 if (result.isSuccessful) {
     print('Result: ${result.value}');
 } else if (result.isUnsuccessful) {
