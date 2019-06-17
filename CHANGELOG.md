@@ -1,3 +1,5 @@
-## [0.0.2] - 2019-06-17
+## [0.0.3] - 2019-06-17
 
-* Added basic EndPoint class
+* Added first prototype of:
+    - ValueEndPoint
+    - EmptyEndPoint

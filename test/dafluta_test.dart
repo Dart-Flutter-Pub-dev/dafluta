@@ -68,7 +68,7 @@ void main() {
 }
 
 class GetWebPage extends ValueEndPoint<WebPage> {
-  Future<EndPointResult> call() {
+  Future<EndPointResult<WebPage>> call() {
     return super.get('https://demo4798213.mockable.io/webpage');
   }
 
