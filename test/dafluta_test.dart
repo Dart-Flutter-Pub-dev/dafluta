@@ -5,20 +5,29 @@ import 'package:http/src/response.dart';
 import 'package:meta/meta.dart';
 
 void main() {
-  test('value end point', () async {
-    var getDog = GetDog();
-    var result = await getDog.call();
+  test('get web page', () async {
+    var getWebPage = GetWebPage();
+    var result = await getWebPage.call();
 
     expect(result.response.statusCode, equals(200));
     expect(result.isSuccessful, isTrue);
     expect(result.response.body, isNotEmpty);
   });
 
-  test('empty end point', () async {
-    var getNothing = GetNothing();
-    var result = await getNothing.call();
+  test('get empty', () async {
+    var getEmpty = GetEmpty();
+    var result = await getEmpty.call();
 
     expect(result.response.statusCode, equals(200));
+    expect(result.isSuccessful, isTrue);
+    expect(result.response.body, isEmpty);
+  });
+
+  test('post web page', () async {
+    var postSample = PostSample();
+    var result = await postSample.call();
+
+    expect(result.response.statusCode, equals(201));
     expect(result.isSuccessful, isTrue);
     expect(result.response.body, isEmpty);
   });
@@ -31,24 +40,26 @@ void main() {
   });
 }
 
-class GetDog extends ValueEndPoint<Dog> {
-  static const String URL = 'https://dog.ceo/api/breeds/image/random';
-
+class GetWebPage extends ValueEndPoint<WebPage> {
   Future<EndPointResult> call() {
-    return super.get(URL);
+    return super.get('https://demo4798213.mockable.io/webpage');
   }
 
   @override
-  Dog convert(Response response) {
-    return Dog.json(response.body);
+  WebPage convert(Response response) {
+    return WebPage.json(response.body);
   }
 }
 
-class GetNothing extends EmptyEndPoint {
-  static const String URL = 'https://testest.free.beeceptor.com/';
-
+class GetEmpty extends EmptyEndPoint {
   Future<EndPointResult> call() {
-    return super.get(URL);
+    return super.get('https://demo4798213.mockable.io/empty');
+  }
+}
+
+class PostSample extends EmptyEndPoint {
+  Future<EndPointResult> call() {
+    return super.post('https://demo4798213.mockable.io/post', body: '{}');
   }
 }
 
@@ -61,14 +72,14 @@ class NonExistentEndPoint extends EmptyEndPoint {
 }
 
 @immutable
-class Dog {
+class WebPage {
   final String url;
 
-  Dog(this.url);
+  WebPage(this.url);
 
-  static Dog json(String json) {
+  static WebPage json(String json) {
     var data = Json.jsonDecode(json);
 
-    return Dog(data['message']);
+    return WebPage(data['url']);
   }
 }
