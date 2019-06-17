@@ -32,6 +32,33 @@ void main() {
     expect(result.response.body, isEmpty);
   });
 
+  test('put web page', () async {
+    var putSample = PutSample();
+    var result = await putSample.call();
+
+    expect(result.response.statusCode, equals(200));
+    expect(result.isSuccessful, isTrue);
+    expect(result.response.body, isEmpty);
+  });
+
+  test('patch web page', () async {
+    var patchSample = PatchSample();
+    var result = await patchSample.call();
+
+    expect(result.response.statusCode, equals(200));
+    expect(result.isSuccessful, isTrue);
+    expect(result.response.body, isEmpty);
+  });
+
+  test('delete web page', () async {
+    var deleteSample = DeleteSample();
+    var result = await deleteSample.call();
+
+    expect(result.response.statusCode, equals(200));
+    expect(result.isSuccessful, isTrue);
+    expect(result.response.body, isEmpty);
+  });
+
   test('non existent end point', () async {
     var nonExistent = NonExistentEndPoint();
     var result = await nonExistent.call();
@@ -60,6 +87,24 @@ class GetEmpty extends EmptyEndPoint {
 class PostSample extends EmptyEndPoint {
   Future<EndPointResult> call() {
     return super.post('https://demo4798213.mockable.io/post', body: '{}');
+  }
+}
+
+class PutSample extends EmptyEndPoint {
+  Future<EndPointResult> call() {
+    return super.put('https://demo4798213.mockable.io/put', body: '{}');
+  }
+}
+
+class PatchSample extends EmptyEndPoint {
+  Future<EndPointResult> call() {
+    return super.patch('https://demo4798213.mockable.io/patch', body: '{}');
+  }
+}
+
+class DeleteSample extends EmptyEndPoint {
+  Future<EndPointResult> call() {
+    return super.delete('https://demo4798213.mockable.io/delete');
   }
 }
 
