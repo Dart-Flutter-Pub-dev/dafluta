@@ -5,29 +5,43 @@ import 'package:http/src/response.dart';
 import 'package:meta/meta.dart';
 
 void main() {
-  test('http test', () async {
+  test('value end point', () async {
     var getDog = GetDog();
-    var response = await getDog.run();
+    var result = await getDog.call();
 
-    if (response.isSuccessful) {
-      print('Ok: ${response.response}');
-      print('Ok: ${response.value}');
-    } else {
-      print('Fail: ${response.exception}');
-    }
+    expect(result.response.statusCode, equals(200));
+    expect(result.isSuccessful, isTrue);
+    expect(result.response.body, isNotEmpty);
+  });
+
+  test('empty end point', () async {
+    var getNothing = GetNothing();
+    var result = await getNothing.call();
+
+    expect(result.response.statusCode, equals(200));
+    expect(result.isSuccessful, isTrue);
+    expect(result.response.body, isEmpty);
   });
 }
 
-class GetDog extends EndPoint<Dog> {
+class GetDog extends ValueEndPoint<Dog> {
   static const String URL = 'https://dog.ceo/api/breeds/image/random';
 
-  Future<EndPointResponse> run() {
+  Future<EndPointResult> call() {
     return super.get(URL);
   }
 
   @override
   Dog convert(Response response) {
     return Dog.json(response.body);
+  }
+}
+
+class GetNothing extends EmptyEndPoint {
+  static const String URL = 'https://testest.free.beeceptor.com/';
+
+  Future<EndPointResult> call() {
+    return super.get(URL);
   }
 }
 
