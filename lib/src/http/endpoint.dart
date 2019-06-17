@@ -1,77 +1,58 @@
 import 'dart:convert';
 import 'package:http/http.dart';
+import 'package:http/http.dart' as http;
 
 abstract class ValueEndPoint<T> {
   T convert(Response response);
 
   Future<EndPointResult<T>> get(url, {Map<String, String> headers}) async {
-    final client = Client();
-
     try {
-      final response = await client.get(url, headers: headers);
+      final response = await http.get(url, headers: headers);
       return EndPointResult<T>(response: response, value: convert(response));
     } catch (e) {
       return EndPointResult<T>(exception: e);
-    } finally {
-      client.close();
     }
   }
 
   Future<EndPointResult<T>> post(url,
       {Map<String, String> headers, body, Encoding encoding}) async {
-    final client = Client();
-
     try {
-      final response = await client.post(url,
+      final response = await http.post(url,
           headers: headers, body: body, encoding: encoding);
       return EndPointResult<T>(response: response, value: convert(response));
     } catch (e) {
       return EndPointResult<T>(exception: e);
-    } finally {
-      client.close();
     }
   }
 
   Future<EndPointResult<T>> put(url,
       {Map<String, String> headers, body, Encoding encoding}) async {
-    final client = Client();
-
     try {
-      final response = await client.put(url,
-          headers: headers, body: body, encoding: encoding);
+      final response =
+          await http.put(url, headers: headers, body: body, encoding: encoding);
       return EndPointResult<T>(response: response, value: convert(response));
     } catch (e) {
       return EndPointResult<T>(exception: e);
-    } finally {
-      client.close();
     }
   }
 
   Future<EndPointResult<T>> patch(url,
       {Map<String, String> headers, body, Encoding encoding}) async {
-    final client = Client();
-
     try {
-      final response = await client.patch(url,
+      final response = await http.patch(url,
           headers: headers, body: body, encoding: encoding);
       return EndPointResult<T>(response: response, value: convert(response));
     } catch (e) {
       return EndPointResult<T>(exception: e);
-    } finally {
-      client.close();
     }
   }
 
   Future<EndPointResult<T>> delete(url, {Map<String, String> headers}) async {
-    final client = Client();
-
     try {
-      final response = await client.delete(url, headers: headers);
+      final response = await http.delete(url, headers: headers);
       return EndPointResult<T>(response: response, value: convert(response));
     } catch (e) {
       return EndPointResult<T>(exception: e);
-    } finally {
-      client.close();
     }
   }
 }
