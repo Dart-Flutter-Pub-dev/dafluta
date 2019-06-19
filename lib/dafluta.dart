@@ -1,5 +1,8 @@
 library dafluta;
 
+// dates
+export 'src/dates/dates.dart';
+
 // http
 export 'src/http/endpoint.dart';
 

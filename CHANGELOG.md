@@ -7,3 +7,8 @@
 ## [0.0.5] - 2019-06-18
 
 * Added HTTP logger
+
+## [0.0.6] - 2019-06-19
+
+* Added FadeRoute class
+* Added Dates class
