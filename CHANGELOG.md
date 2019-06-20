@@ -12,3 +12,9 @@
 
 * Added FadeRoute class
 * Added Dates class
+
+## [1.0.0] - 2019-06-20
+
+* Fixed FadeRoute class
+* Added EnterExistRoute class
+* Bumped to 1.0.0
