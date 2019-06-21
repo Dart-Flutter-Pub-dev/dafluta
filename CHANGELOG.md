@@ -18,3 +18,7 @@
 * Fixed FadeRoute class
 * Added EnterExistRoute class
 * Bumped to 1.0.0
+
+## [1.1.0] - 2019-06-21
+
+* Added basic localization tool

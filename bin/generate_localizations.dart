@@ -10,25 +10,9 @@ main(List<String> args) async {
   var output = args[1];
 
   var jsonFiles = getJsonFiles(input);
-  var entries = await getEntries(jsonFiles[0]);
-  var baseLocalization = getBaseLocalization(entries);
-  var concreteLocalizations = [];
+  var groups = await getGroups(jsonFiles);
 
-  for (var jsonFile in jsonFiles) {
-    String filename = basename(jsonFile.path);
-    var parts = filename.split('.');
-
-    var entries = await getEntries(jsonFile);
-    var concrete = getConcreteLocalization(parts[0].toUpperCase(), entries);
-    concreteLocalizations.add(concrete);
-  }
-
-  var outputFile = File(output);
-  outputFile.writeAsStringSync(baseLocalization);
-
-  for (var concrete in concreteLocalizations) {
-    outputFile.writeAsStringSync('\n$concrete', mode: FileMode.APPEND);
-  }
+  generateFile(output, groups);
 }
 
 List<File> getJsonFiles(String root) {
@@ -45,6 +29,20 @@ List<File> getJsonFiles(String root) {
   return result;
 }
 
+Future<List<LocalizationGroup>> getGroups(List<File> files) async {
+  List<LocalizationGroup> groups = [];
+
+  for (var file in files) {
+    String filename = basename(file.path);
+    var parts = filename.split('.');
+    var entries = await getEntries(file);
+
+    groups.add(LocalizationGroup(parts[0].toLowerCase(), entries));
+  }
+
+  return groups;
+}
+
 Future<List<LocalizationEntry>> getEntries(File file) async {
   var content = await file.readAsString();
   Map<String, dynamic> json = jsonDecode(content);
@@ -57,28 +55,108 @@ Future<List<LocalizationEntry>> getEntries(File file) async {
   return entries;
 }
 
-String getBaseLocalization(List<LocalizationEntry> entries) {
-  String result = 'class BaseLocalized {\n';
+void generateFile(String output, List<LocalizationGroup> groups) async {
+  var file = SourceFile(output);
+  file.clear();
 
-  for (var entry in entries) {
-    result += entry.lineBase();
+  // imports
+  file.write("import 'package:flutter/foundation.dart';\n");
+  file.write("import 'package:flutter/widgets.dart';\n");
+  file.write('\n');
+
+  // base
+  file.write(groups[0].base());
+
+  // concrete
+  for (var group in groups) {
+    file.write('\n${group.concrete()}');
   }
 
-  result += '}\n';
+  // localized
+  file.write('\nclass Localized {\n');
+  file.write('  static BaseLocalized text;\n');
+  file.write('\n');
+  file.write(
+      '  static List<Locale> locales = localized.keys.map((l) => Locale(l)).toList();\n');
+  file.write('\n');
+  file.write('  static Map<String, BaseLocalized> localized = {\n');
 
-  return result;
+  for (var i = 0; i < groups.length; i++) {
+    var group = groups[i];
+    file.write('    ${group.mapEntry()}');
+
+    if (i < (groups.length - 1)) {
+      file.write(',\n');
+    } else {
+      file.write('\n');
+    }
+  }
+  file.write('  };\n');
+  file.write('\n');
+  file.write('  static void load(Locale locale) {\n');
+  file.write('    text = localized[locale.languageCode];\n');
+  file.write('  }\n');
+  file.write('}\n');
+
+  // delegate
+  file.write(
+      '\nclass CustomLocalizationsDelegate extends LocalizationsDelegate {\n');
+  file.write('  const CustomLocalizationsDelegate();\n');
+  file.write('\n');
+  file.write('  @override\n');
+  file.write('  bool isSupported(Locale locale) => Localized.locales\n');
+  file.write('      .map((l) => l.languageCode)\n');
+  file.write('      .contains(locale.languageCode);\n');
+  file.write('\n');
+  file.write('  @override\n');
+  file.write('  Future load(Locale locale) {\n');
+  file.write('    Localized.load(locale);\n');
+  file.write('    return SynchronousFuture(Object());\n');
+  file.write('  }\n');
+  file.write('\n');
+  file.write('  @override\n');
+  file.write(
+      '  bool shouldReload(CustomLocalizationsDelegate old) => false;\n');
+  file.write('}');
 }
 
-String getConcreteLocalization(String name, List<LocalizationEntry> entries) {
-  String result = 'class ${name}Localized extends BaseLocalized {\n';
+class LocalizationGroup {
+  final String locale;
+  final List<LocalizationEntry> entries;
 
-  for (var entry in entries) {
-    result += entry.lineConcrete();
+  LocalizationGroup(this.locale, this.entries);
+
+  String name() {
+    return locale.toUpperCase();
   }
 
-  result += '}\n';
+  String mapEntry() {
+    return "'$locale': ${name()}Localized()";
+  }
 
-  return result;
+  String base() {
+    String result = 'class BaseLocalized {\n';
+
+    for (var entry in entries) {
+      result += entry.lineBase();
+    }
+
+    result += '}\n';
+
+    return result;
+  }
+
+  String concrete() {
+    String result = 'class ${name()}Localized extends BaseLocalized {\n';
+
+    for (var entry in entries) {
+      result += entry.lineConcrete();
+    }
+
+    result += '}\n';
+
+    return result;
+  }
 }
 
 class LocalizationEntry {
@@ -126,5 +204,19 @@ class LocalizationEntry {
     }
 
     return result;
+  }
+}
+
+class SourceFile {
+  final File file;
+
+  SourceFile(String path) : file = File(path);
+
+  void clear() {
+    file.writeAsStringSync('');
+  }
+
+  void write(String content) {
+    file.writeAsStringSync(content, mode: FileMode.append);
   }
 }
