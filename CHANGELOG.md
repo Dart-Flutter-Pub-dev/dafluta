@@ -22,3 +22,7 @@
 ## [1.1.0] - 2019-06-21
 
 * Added basic localization tool
+
+## [1.2.0] - 2019-06-21
+
+* Added helper method to parse enums

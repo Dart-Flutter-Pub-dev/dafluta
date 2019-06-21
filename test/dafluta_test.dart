@@ -1,10 +1,22 @@
 import 'dart:convert' as Json;
+import 'package:dafluta/src/enums/enums.dart';
 import 'package:dafluta/src/http/endpoint.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/src/response.dart';
 import 'package:meta/meta.dart';
 
 void main() {
+  test('enums', () async {
+    var day1 = dayParser('monday');
+    expect(day1, equals(Day.MONDAY));
+
+    var day2 = dayParser('xxx');
+    expect(day2, equals(null));
+
+    var day3 = dayParser('xxx', defaultValue: Day.SUNDAY);
+    expect(day3, equals(Day.SUNDAY));
+  });
+
   test('get web page', () async {
     var getWebPage = GetWebPage();
     var result = await getWebPage.call();
@@ -128,3 +140,9 @@ class WebPage {
     return WebPage(data['url']);
   }
 }
+
+Day dayParser(String value, {Day defaultValue}) {
+  return Enums.parse(Day.values, value, defaultValue: defaultValue);
+}
+
+enum Day { MONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY, SATURDAY, SUNDAY }
