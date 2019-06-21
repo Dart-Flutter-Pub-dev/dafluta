@@ -1,4 +1,5 @@
 {
-    "greetings": "Hola, mundo!",
-    "test1": "Esto es una prueba"
+    "greetings": "Hola, ${parametro}!",
+    "bye": "Adios, ${person}, y disfruta ${place}!",
+    "test": "Esto es una prueba"
 }

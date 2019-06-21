@@ -51,7 +51,7 @@ Future<List<LocalizationEntry>> getEntries(File file) async {
   List<LocalizationEntry> entries = [];
 
   for (var entry in json.keys) {
-    entries.add(LocalizationEntry(entry, json[entry]));
+    entries.add(LocalizationEntry.create(entry, json[entry]));
   }
 
   return entries;
@@ -61,7 +61,7 @@ String getBaseLocalization(List<LocalizationEntry> entries) {
   String result = 'class BaseLocalized {\n';
 
   for (var entry in entries) {
-    result += "  String ${entry.key} = '';\n";
+    result += entry.lineBase();
   }
 
   result += '}\n';
@@ -73,7 +73,7 @@ String getConcreteLocalization(String name, List<LocalizationEntry> entries) {
   String result = 'class ${name}Localized extends BaseLocalized {\n';
 
   for (var entry in entries) {
-    result += "  String ${entry.key} = '${entry.value}';\n";
+    result += entry.lineConcrete();
   }
 
   result += '}\n';
@@ -84,6 +84,47 @@ String getConcreteLocalization(String name, List<LocalizationEntry> entries) {
 class LocalizationEntry {
   final String key;
   final String value;
+  final List<String> params;
 
-  LocalizationEntry(this.key, this.value);
+  LocalizationEntry(this.key, this.value, [this.params = const []]);
+
+  static LocalizationEntry create(String key, String value) {
+    RegExp exp = new RegExp(r"\$\{([^\}]+)\}");
+    List<String> params =
+        exp.allMatches(value).toList().map((r) => r.group(1)).toList();
+
+    for (var param in params) {
+      value = value.replaceFirst('\$\{$param\}', '\$$param');
+    }
+
+    return LocalizationEntry(key, value, params);
+  }
+
+  String lineConcrete() {
+    return _line(value);
+  }
+
+  String lineBase() {
+    return _line('');
+  }
+
+  String _line(String value) {
+    if (params.isEmpty) {
+      return "  String $key = '$value';\n";
+    } else {
+      return "  String $key(${_parameterList(params)}) => '$value';\n";
+    }
+  }
+
+  String _parameterList(List<String> parameters) {
+    var result = '';
+
+    for (var parameter in parameters) {
+      result += result.isEmpty ? '' : ', ';
+
+      result += 'String $parameter';
+    }
+
+    return result;
+  }
 }
