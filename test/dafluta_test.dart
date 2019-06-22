@@ -1,12 +1,70 @@
-import 'dart:convert' as Json;
-import 'package:dafluta/src/enums/enums.dart';
+import 'dart:convert';
 import 'package:dafluta/src/http/endpoint.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/src/response.dart';
 import 'package:meta/meta.dart';
+import 'package:dafluta/src/enums/enums.dart';
+import 'package:dafluta/src/json/json.dart';
 
 void main() {
-  test('enums', () async {
+  testJson();
+  testEnums();
+  testEndPoints();
+}
+
+// =============================================================================
+
+void testJson() {
+  test('json', () {
+    Person person1 = Person.fromJson(JsonData.fromString(
+        '{"name": "John Doe", "married": true, "address": {"street": "Fake street", "number": 123}}'));
+    Person person2 = Person('John Doe', true, Address('Fake street', 123));
+
+    expect(person1 == person2, isTrue);
+  });
+}
+
+@immutable
+class Person {
+  final String name;
+  final bool married;
+  final Address address;
+
+  Person(this.name, this.married, this.address);
+
+  factory Person.fromJson(JsonData json) => Person(
+        json.string('name'),
+        json.boolean('married'),
+        Address.fromJson(json.object('address')),
+      );
+
+  bool operator ==(p) =>
+      (p.name == name) && (p.married == married) && (p.address == address);
+
+  int get hashCode => name.hashCode * married.hashCode * address.hashCode;
+}
+
+@immutable
+class Address {
+  final String street;
+  final num number;
+
+  Address(this.street, this.number);
+
+  factory Address.fromJson(JsonData json) => Address(
+        json.string('street'),
+        json.number('number'),
+      );
+
+  bool operator ==(p) => (p.street == street) && (p.number == number);
+
+  int get hashCode => street.hashCode * number.hashCode;
+}
+
+// =============================================================================
+
+void testEnums() {
+  test('enums', () {
     var day1 = dayParser('monday');
     expect(day1, equals(Day.MONDAY));
 
@@ -16,7 +74,17 @@ void main() {
     var day3 = dayParser('xxx', defaultValue: Day.SUNDAY);
     expect(day3, equals(Day.SUNDAY));
   });
+}
 
+Day dayParser(String value, {Day defaultValue}) {
+  return Enums.parse(Day.values, value, defaultValue: defaultValue);
+}
+
+enum Day { MONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY, SATURDAY, SUNDAY }
+
+// =============================================================================
+
+void testEndPoints() {
   test('get web page', () async {
     var getWebPage = GetWebPage();
     var result = await getWebPage.call();
@@ -135,14 +203,8 @@ class WebPage {
   WebPage(this.url);
 
   static WebPage json(String json) {
-    var data = Json.jsonDecode(json);
+    var data = jsonDecode(json);
 
     return WebPage(data['url']);
   }
 }
-
-Day dayParser(String value, {Day defaultValue}) {
-  return Enums.parse(Day.values, value, defaultValue: defaultValue);
-}
-
-enum Day { MONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY, SATURDAY, SUNDAY }
