@@ -16,9 +16,41 @@ void main() {
 
 void testJson() {
   test('json', () {
-    Person person1 = Person.fromJson(JsonData.fromString(
-        '{"name": "John Doe", "married": true, "address": {"street": "Fake street", "number": 123}}'));
-    Person person2 = Person('John Doe', true, Address('Fake street', 123));
+    Person person1 = Person.fromJson(JsonData.fromString("""{
+          "name": "John Doe",
+          "married": true,
+          "address":
+          {
+              "street": "Fake street",
+              "number": 123
+          },
+          "subordinates":
+          [
+            {
+              "name": "Sub 1",
+              "married": true,
+              "address":
+              {
+                "street": "Fake street",
+                "number": 444
+              }
+            },
+            {
+              "name": "Sub 2",
+              "married": false,
+              "address":
+              {
+                "street": "Fake street",
+                "number": 555
+              }
+            }
+          ]
+        }"""));
+
+    Person sub1 = Person('Sub1', true, Address('Fake street', 444), []);
+    Person sub2 = Person('Sub2', false, Address('Fake street', 555), []);
+    Person person2 =
+        Person('John Doe', true, Address('Fake street', 123), [sub1, sub2]);
 
     expect(person1 == person2, isTrue);
   });
@@ -29,19 +61,28 @@ class Person {
   final String name;
   final bool married;
   final Address address;
+  final List<Person> subordinates;
 
-  Person(this.name, this.married, this.address);
+  Person(this.name, this.married, this.address, this.subordinates);
 
-  factory Person.fromJson(JsonData json) => Person(
+  static Person fromJson(JsonData json) => Person(
         json.string('name'),
         json.boolean('married'),
         Address.fromJson(json.object('address')),
+        json.list('subordinates', Person.fromJson),
       );
 
   bool operator ==(p) =>
-      (p.name == name) && (p.married == married) && (p.address == address);
+      (p.name == name) &&
+      (p.married == married) &&
+      (p.address == address) &&
+      (p.subordinates.length == subordinates.length);
 
-  int get hashCode => name.hashCode * married.hashCode * address.hashCode;
+  int get hashCode =>
+      name.hashCode *
+      married.hashCode *
+      address.hashCode *
+      subordinates.hashCode;
 }
 
 @immutable
@@ -51,7 +92,7 @@ class Address {
 
   Address(this.street, this.number);
 
-  factory Address.fromJson(JsonData json) => Address(
+  static Address fromJson(JsonData json) => Address(
         json.string('street'),
         json.number('number'),
       );

@@ -23,8 +23,10 @@ class JsonData {
     return (data[key] != null) ? (data[key] as bool) : defaultValue;
   }
 
-  List<T> list<T>(String key, {List<T> defaultValue}) {
-    return (data[key] != null) ? List<T>.from(data[key]) : defaultValue;
+  List<T> list<T>(String key, T f(JsonData jsonData)) {
+    return (data[key] != null)
+        ? List.from(data[key]).map((e) => f(JsonData.fromMap(e))).toList()
+        : [];
   }
 
   JsonData object(String key) {
