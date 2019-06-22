@@ -1,6 +1,6 @@
 name: dafluta
 description: A set of Flutter util classes and methods that are commonly used in projects.
-version: 1.3.0
+version: 1.4.0
 author: Mauricio Togneri <mauricio.togneri@gmail.com>
 homepage: https://github.com/mauriciotogneri/dafluta
 
@@ -21,3 +21,4 @@ dev_dependencies:
     sdk: flutter
 
   meta: ^1.1.6
+  collection: ^1.14.11

@@ -26,3 +26,7 @@
 ## [1.2.0] - 2019-06-21
 
 * Added helper method to parse enums
+
+## [1.3.0] - 2019-06-22
+
+* Added Json support

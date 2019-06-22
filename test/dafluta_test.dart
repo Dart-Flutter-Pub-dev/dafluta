@@ -1,22 +1,16 @@
 import 'dart:convert';
 import 'package:dafluta/src/http/endpoint.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:collection/collection.dart';
 import 'package:http/src/response.dart';
 import 'package:meta/meta.dart';
 import 'package:dafluta/src/enums/enums.dart';
 import 'package:dafluta/src/json/json.dart';
 
 void main() {
-  testJson();
-  testEnums();
-  testEndPoints();
-}
-
-// =============================================================================
-
-void testJson() {
-  test('json', () {
-    Person person1 = Person.fromJson(JsonData.fromString("""{
+  group('json', () {
+    test('json', () {
+      Person person1 = Person.fromJson(JsonData("""{
           "name": "John Doe",
           "married": true,
           "address":
@@ -47,14 +41,93 @@ void testJson() {
           ]
         }"""));
 
-    Person sub1 = Person('Sub1', true, Address('Fake street', 444), []);
-    Person sub2 = Person('Sub2', false, Address('Fake street', 555), []);
-    Person person2 =
-        Person('John Doe', true, Address('Fake street', 123), [sub1, sub2]);
+      Person sub1 = Person('Sub 1', true, Address('Fake street', 444), []);
+      Person sub2 = Person('Sub 2', false, Address('Fake street', 555), []);
+      Person person2 =
+          Person('John Doe', true, Address('Fake street', 123), [sub1, sub2]);
 
-    expect(person1 == person2, isTrue);
+      expect(person1 == person2, isTrue);
+    });
+  });
+
+  group('enum', () {
+    test('enums', () {
+      var day1 = dayParser('monday');
+      expect(day1, equals(Day.MONDAY));
+
+      var day2 = dayParser('xxx');
+      expect(day2, equals(null));
+
+      var day3 = dayParser('xxx', defaultValue: Day.SUNDAY);
+      expect(day3, equals(Day.SUNDAY));
+    });
+  });
+
+  group('end points', () {
+    test('get web page', () async {
+      var getWebPage = GetWebPage();
+      var result = await getWebPage.call();
+
+      expect(result.response.statusCode, equals(200));
+      expect(result.isSuccessful, isTrue);
+      expect(result.response.body, isNotEmpty);
+    });
+
+    test('get empty', () async {
+      var getEmpty = GetEmpty();
+      var result = await getEmpty.call();
+
+      expect(result.response.statusCode, equals(200));
+      expect(result.isSuccessful, isTrue);
+      expect(result.response.body, isEmpty);
+    });
+
+    test('post web page', () async {
+      var postSample = PostSample();
+      var result = await postSample.call();
+
+      expect(result.response.statusCode, equals(201));
+      expect(result.isSuccessful, isTrue);
+      expect(result.response.body, isEmpty);
+    });
+
+    test('put web page', () async {
+      var putSample = PutSample();
+      var result = await putSample.call();
+
+      expect(result.response.statusCode, equals(200));
+      expect(result.isSuccessful, isTrue);
+      expect(result.response.body, isEmpty);
+    });
+
+    test('patch web page', () async {
+      var patchSample = PatchSample();
+      var result = await patchSample.call();
+
+      expect(result.response.statusCode, equals(200));
+      expect(result.isSuccessful, isTrue);
+      expect(result.response.body, isEmpty);
+    });
+
+    test('delete web page', () async {
+      var deleteSample = DeleteSample();
+      var result = await deleteSample.call();
+
+      expect(result.response.statusCode, equals(200));
+      expect(result.isSuccessful, isTrue);
+      expect(result.response.body, isEmpty);
+    });
+
+    test('non existent end point', () async {
+      var nonExistent = NonExistentEndPoint();
+      var result = await nonExistent.call();
+
+      expect(result.hasFailed, isTrue);
+    });
   });
 }
+
+// =============================================================================
 
 @immutable
 class Person {
@@ -68,7 +141,7 @@ class Person {
   static Person fromJson(JsonData json) => Person(
         json.string('name'),
         json.boolean('married'),
-        Address.fromJson(json.object('address')),
+        json.object('address', Address.fromJson),
         json.list('subordinates', Person.fromJson),
       );
 
@@ -76,7 +149,8 @@ class Person {
       (p.name == name) &&
       (p.married == married) &&
       (p.address == address) &&
-      (p.subordinates.length == subordinates.length);
+      (p.subordinates.length == subordinates.length) &&
+      (DeepCollectionEquality().equals(p.subordinates, subordinates));
 
   int get hashCode =>
       name.hashCode *
@@ -88,13 +162,13 @@ class Person {
 @immutable
 class Address {
   final String street;
-  final num number;
+  final int number;
 
   Address(this.street, this.number);
 
   static Address fromJson(JsonData json) => Address(
         json.string('street'),
-        json.number('number'),
+        json.integer('number'),
       );
 
   bool operator ==(p) => (p.street == street) && (p.number == number);
@@ -104,19 +178,6 @@ class Address {
 
 // =============================================================================
 
-void testEnums() {
-  test('enums', () {
-    var day1 = dayParser('monday');
-    expect(day1, equals(Day.MONDAY));
-
-    var day2 = dayParser('xxx');
-    expect(day2, equals(null));
-
-    var day3 = dayParser('xxx', defaultValue: Day.SUNDAY);
-    expect(day3, equals(Day.SUNDAY));
-  });
-}
-
 Day dayParser(String value, {Day defaultValue}) {
   return Enums.parse(Day.values, value, defaultValue: defaultValue);
 }
@@ -124,69 +185,6 @@ Day dayParser(String value, {Day defaultValue}) {
 enum Day { MONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY, SATURDAY, SUNDAY }
 
 // =============================================================================
-
-void testEndPoints() {
-  test('get web page', () async {
-    var getWebPage = GetWebPage();
-    var result = await getWebPage.call();
-
-    expect(result.response.statusCode, equals(200));
-    expect(result.isSuccessful, isTrue);
-    expect(result.response.body, isNotEmpty);
-  });
-
-  test('get empty', () async {
-    var getEmpty = GetEmpty();
-    var result = await getEmpty.call();
-
-    expect(result.response.statusCode, equals(200));
-    expect(result.isSuccessful, isTrue);
-    expect(result.response.body, isEmpty);
-  });
-
-  test('post web page', () async {
-    var postSample = PostSample();
-    var result = await postSample.call();
-
-    expect(result.response.statusCode, equals(201));
-    expect(result.isSuccessful, isTrue);
-    expect(result.response.body, isEmpty);
-  });
-
-  test('put web page', () async {
-    var putSample = PutSample();
-    var result = await putSample.call();
-
-    expect(result.response.statusCode, equals(200));
-    expect(result.isSuccessful, isTrue);
-    expect(result.response.body, isEmpty);
-  });
-
-  test('patch web page', () async {
-    var patchSample = PatchSample();
-    var result = await patchSample.call();
-
-    expect(result.response.statusCode, equals(200));
-    expect(result.isSuccessful, isTrue);
-    expect(result.response.body, isEmpty);
-  });
-
-  test('delete web page', () async {
-    var deleteSample = DeleteSample();
-    var result = await deleteSample.call();
-
-    expect(result.response.statusCode, equals(200));
-    expect(result.isSuccessful, isTrue);
-    expect(result.response.body, isEmpty);
-  });
-
-  test('non existent end point', () async {
-    var nonExistent = NonExistentEndPoint();
-    var result = await nonExistent.call();
-
-    expect(result.hasFailed, isTrue);
-  });
-}
 
 class GetWebPage extends ValueEndPoint<WebPage> {
   Future<EndPointResult<WebPage>> call() {
