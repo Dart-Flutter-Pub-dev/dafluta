@@ -1,5 +1,4 @@
 import 'dart:convert';
-
 import 'package:dafluta/src/http/endpoint.dart';
 import 'package:http/http.dart';
 import 'package:meta/meta.dart';

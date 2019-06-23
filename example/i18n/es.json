@@ -1,5 +1,0 @@
-{
-    "greetings": "Hola, ${parametro}!",
-    "bye": "Adios, ${person}, y disfruta ${place}!",
-    "test": "Esto es una prueba"
-}
