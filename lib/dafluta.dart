@@ -6,9 +6,6 @@ export 'src/dates/dates.dart';
 // enums
 export 'src/enums/enums.dart';
 
-// http
-export 'src/http/endpoint.dart';
-
 // json
 export 'src/json/json.dart';
 

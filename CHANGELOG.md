@@ -30,3 +30,9 @@
 ## [1.3.0] - 2019-06-22
 
 * Added Json support
+
+## [1.4.0] - 2019-06-23
+
+* Removed features:
+    - Localization
+    - HTTP
