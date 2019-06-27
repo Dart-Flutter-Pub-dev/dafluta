@@ -7,7 +7,7 @@ import 'package:dafluta/src/json/json.dart';
 void main() {
   group('json', () {
     test('json', () {
-      Person person1 = Person.fromJson(JsonData("""{
+      final person1 = Person.fromJson(JsonData('''{
           "name": "John Doe",
           "married": true,
           "address":
@@ -36,11 +36,11 @@ void main() {
               }
             }
           ]
-        }"""));
+        }'''));
 
-      Person sub1 = Person('Sub 1', true, Address('Fake street', 444), []);
-      Person sub2 = Person('Sub 2', false, Address('Fake street', 555), []);
-      Person person2 =
+      const sub1 = Person('Sub 1', true, Address('Fake street', 444), []);
+      const sub2 = Person('Sub 2', false, Address('Fake street', 555), []);
+      const person2 =
           Person('John Doe', true, Address('Fake street', 123), [sub1, sub2]);
 
       expect(person1 == person2, isTrue);
@@ -49,13 +49,13 @@ void main() {
 
   group('enum', () {
     test('enums', () {
-      var day1 = dayParser('monday');
+      final day1 = dayParser('monday');
       expect(day1, equals(Day.MONDAY));
 
-      var day2 = dayParser('xxx');
+      final day2 = dayParser('xxx');
       expect(day2, equals(null));
 
-      var day3 = dayParser('xxx', defaultValue: Day.SUNDAY);
+      final day3 = dayParser('xxx', defaultValue: Day.SUNDAY);
       expect(day3, equals(Day.SUNDAY));
     });
   });
@@ -70,7 +70,7 @@ class Person {
   final Address address;
   final List<Person> subordinates;
 
-  Person(this.name, this.married, this.address, this.subordinates);
+  const Person(this.name, this.married, this.address, this.subordinates);
 
   static Person fromJson(JsonData json) => Person(
         json.string('name'),
@@ -79,13 +79,15 @@ class Person {
         json.list('subordinates', Person.fromJson),
       );
 
+  @override
   bool operator ==(p) =>
       (p.name == name) &&
       (p.married == married) &&
       (p.address == address) &&
       (p.subordinates.length == subordinates.length) &&
-      (DeepCollectionEquality().equals(p.subordinates, subordinates));
+      (const DeepCollectionEquality().equals(p.subordinates, subordinates));
 
+  @override
   int get hashCode =>
       name.hashCode *
       married.hashCode *
@@ -98,15 +100,17 @@ class Address {
   final String street;
   final int number;
 
-  Address(this.street, this.number);
+  const Address(this.street, this.number);
 
   static Address fromJson(JsonData json) => Address(
         json.string('street'),
         json.integer('number'),
       );
 
+  @override
   bool operator ==(p) => (p.street == street) && (p.number == number);
 
+  @override
   int get hashCode => street.hashCode * number.hashCode;
 }
 
