@@ -6,16 +6,16 @@ class FadeRoute<T> extends PageRouteBuilder<T> {
   FadeRoute(this.page)
       : super(
           pageBuilder: (
-            context,
-            animation,
-            secondaryAnimation,
+            BuildContext context,
+            Animation<double> animation,
+            Animation<double> secondaryAnimation,
           ) =>
               page,
           transitionsBuilder: (
-            context,
-            animation,
-            secondaryAnimation,
-            child,
+            BuildContext context,
+            Animation<double> animation,
+            Animation<double> secondaryAnimation,
+            Widget child,
           ) =>
               FadeTransition(
                 opacity: animation,

@@ -7,19 +7,19 @@ class EnterExitRoute<T> extends PageRouteBuilder<T> {
   EnterExitRoute({this.exitPage, this.enterPage})
       : super(
           pageBuilder: (
-            context,
-            animation,
-            secondaryAnimation,
+            BuildContext context,
+            Animation<double> animation,
+            Animation<double> secondaryAnimation,
           ) =>
               enterPage,
           transitionsBuilder: (
-            context,
-            animation,
-            secondaryAnimation,
-            child,
+            BuildContext context,
+            Animation<double> animation,
+            Animation<double> secondaryAnimation,
+            Widget child,
           ) =>
               Stack(
-                children: [
+                children: <Widget>[
                   SlideTransition(
                     position: Tween<Offset>(
                       begin: const Offset(0, 0),

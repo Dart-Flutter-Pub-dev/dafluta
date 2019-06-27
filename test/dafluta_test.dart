@@ -7,7 +7,7 @@ import 'package:dafluta/src/json/json.dart';
 void main() {
   group('json', () {
     test('json', () {
-      final person1 = Person.fromJson(JsonData('''{
+      final Person person1 = Person.fromJson(JsonData('''{
           "name": "John Doe",
           "married": true,
           "address":
@@ -38,10 +38,10 @@ void main() {
           ]
         }'''));
 
-      const sub1 = Person('Sub 1', true, Address('Fake street', 444), []);
-      const sub2 = Person('Sub 2', false, Address('Fake street', 555), []);
-      const person2 =
-          Person('John Doe', true, Address('Fake street', 123), [sub1, sub2]);
+      const Person sub1 = Person('Sub 1', true, Address('Fake street', 444), <Person>[]);
+      const Person sub2 = Person('Sub 2', false, Address('Fake street', 555), <Person>[]);
+      const Person person2 =
+          Person('John Doe', true, Address('Fake street', 123), <Person>[sub1, sub2]);
 
       expect(person1 == person2, isTrue);
     });
@@ -49,13 +49,13 @@ void main() {
 
   group('enum', () {
     test('enums', () {
-      final day1 = dayParser('monday');
+      final Day day1 = dayParser('monday');
       expect(day1, equals(Day.MONDAY));
 
-      final day2 = dayParser('xxx');
+      final Day day2 = dayParser('xxx');
       expect(day2, equals(null));
 
-      final day3 = dayParser('xxx', defaultValue: Day.SUNDAY);
+      final Day day3 = dayParser('xxx', defaultValue: Day.SUNDAY);
       expect(day3, equals(Day.SUNDAY));
     });
   });
@@ -80,7 +80,7 @@ class Person {
       );
 
   @override
-  bool operator ==(p) =>
+  bool operator ==(dynamic p) =>
       (p.name == name) &&
       (p.married == married) &&
       (p.address == address) &&
@@ -108,7 +108,7 @@ class Address {
       );
 
   @override
-  bool operator ==(p) => (p.street == street) && (p.number == number);
+  bool operator ==(dynamic p) => (p.street == street) && (p.number == number);
 
   @override
   int get hashCode => street.hashCode * number.hashCode;

@@ -37,6 +37,6 @@
     - Localization
     - HTTP
 
-## [1.4.1] - 2019-06-27
+## [1.4.2] - 2019-06-27
 
 * Added lint rules
