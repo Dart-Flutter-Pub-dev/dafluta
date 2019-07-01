@@ -30,7 +30,9 @@ class JsonData {
   List<T> list<T>(String key, T f(JsonData jsonData),
       {List<T> defaultValue = const []}) {
     return (data[key] != null)
-        ? List<dynamic>.from(data[key]).map((dynamic e) => f(JsonData.fromMap(e))).toList()
+        ? List<dynamic>.from(data[key])
+            .map((dynamic e) => f(JsonData.fromMap(e)))
+            .toList()
         : defaultValue;
   }
 

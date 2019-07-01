@@ -40,3 +40,10 @@
 ## [1.4.2] - 2019-06-27
 
 * Added lint rules
+
+## [1.4.3] - 2019-07-01
+
+* Added DialogController
+* Added InitCallback
+* Added HBox and VBox
+* Fixed EnterExitRoute
