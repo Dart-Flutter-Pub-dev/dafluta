@@ -47,3 +47,7 @@
 * Added InitCallback
 * Added HBox and VBox
 * Fixed EnterExitRoute
+
+## [1.5.0] - 2019-07-19
+
+* Added CustomProvider
