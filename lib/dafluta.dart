@@ -18,10 +18,6 @@ export 'src/lifecycle/init_callback.dart';
 // provider
 export 'src/provider/custom_provider.dart';
 
-// routes
-export 'src/routes/enter_exit_route.dart';
-export 'src/routes/fade_route.dart';
-
 // widgets
 export 'src/widgets/hbox.dart';
 export 'src/widgets/vbox.dart';

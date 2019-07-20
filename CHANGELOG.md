@@ -51,3 +51,7 @@
 ## [1.5.0] - 2019-07-19
 
 * Added CustomProvider
+
+## [1.6.0] - 2019-07-20
+
+* Removed routes
