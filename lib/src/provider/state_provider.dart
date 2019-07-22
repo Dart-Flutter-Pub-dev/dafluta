@@ -1,33 +1,33 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
-class StateProvider<T extends BaseProvider> extends StatefulWidget {
-  final T provider;
-  final Widget Function(BuildContext context, T provider) builder;
+class StateProvider<T extends BaseState> extends StatefulWidget {
+  final T state;
+  final Widget Function(BuildContext context, T state) builder;
 
-  const StateProvider({this.provider, this.builder});
+  const StateProvider({this.state, this.builder});
 
   @override
   _StateProviderState<T> createState() =>
-      _StateProviderState<T>(provider, builder);
+      _StateProviderState<T>(state, builder);
 }
 
-class _StateProviderState<T extends BaseProvider>
+class _StateProviderState<T extends BaseState>
     extends State<StateProvider<T>> implements StateObserver {
-  final T provider;
-  final Widget Function(BuildContext context, T provider) builder;
+  final T state;
+  final Widget Function(BuildContext context, T state) builder;
 
-  _StateProviderState(this.provider, this.builder);
+  _StateProviderState(this.state, this.builder);
 
   @override
   void initState() {
     super.initState();
-    provider.addListener(this);
+    state.addListener(this);
   }
 
   @override
   void dispose() {
-    provider.removeListener(this);
+    state.removeListener(this);
     super.dispose();
   }
 
@@ -35,14 +35,14 @@ class _StateProviderState<T extends BaseProvider>
   void onChanged() => setState(() {});
 
   @override
-  Widget build(BuildContext context) => builder(context, provider);
+  Widget build(BuildContext context) => builder(context, state);
 }
 
 class StateObserver {
   void onChanged() {}
 }
 
-class BaseProvider {
+class BaseState {
   final ObserverList<StateObserver> listeners = ObserverList<StateObserver>();
 
   bool get hasListeners => listeners.isNotEmpty;

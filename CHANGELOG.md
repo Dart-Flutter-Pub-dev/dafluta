@@ -59,3 +59,7 @@
 ## [1.7.0] - 2019-07-22
 
 * Renamed classes
+
+## [1.8.0] - 2019-07-22
+
+* Renamed classes
