@@ -55,3 +55,7 @@
 ## [1.6.0] - 2019-07-20
 
 * Removed routes
+
+## [1.7.0] - 2019-07-22
+
+* Renamed classes

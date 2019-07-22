@@ -1,23 +1,23 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
-class CustomProvider<T extends ProviderListener> extends StatefulWidget {
+class StateProvider<T extends BaseProvider> extends StatefulWidget {
   final T provider;
   final Widget Function(BuildContext context, T provider) builder;
 
-  const CustomProvider({this.provider, this.builder});
+  const StateProvider({this.provider, this.builder});
 
   @override
-  _CustomProviderState<T> createState() =>
-      _CustomProviderState<T>(provider, builder);
+  _StateProviderState<T> createState() =>
+      _StateProviderState<T>(provider, builder);
 }
 
-class _CustomProviderState<T extends ProviderListener>
-    extends State<CustomProvider<T>> implements ProviderObserver {
+class _StateProviderState<T extends BaseProvider>
+    extends State<StateProvider<T>> implements StateObserver {
   final T provider;
   final Widget Function(BuildContext context, T provider) builder;
 
-  _CustomProviderState(this.provider, this.builder);
+  _StateProviderState(this.provider, this.builder);
 
   @override
   void initState() {
@@ -38,22 +38,22 @@ class _CustomProviderState<T extends ProviderListener>
   Widget build(BuildContext context) => builder(context, provider);
 }
 
-class ProviderObserver {
+class StateObserver {
   void onChanged() {}
 }
 
-class ProviderListener {
-  final ObserverList<ProviderObserver> listeners =
-      ObserverList<ProviderObserver>();
+class BaseProvider {
+  final ObserverList<StateObserver> listeners =
+      ObserverList<StateObserver>();
 
   bool get hasListeners => listeners.isNotEmpty;
 
-  void addListener(ProviderObserver listener) => listeners.add(listener);
+  void addListener(StateObserver listener) => listeners.add(listener);
 
-  void removeListener(ProviderObserver listener) => listeners.remove(listener);
+  void removeListener(StateObserver listener) => listeners.remove(listener);
 
   void notify() {
-    for (ProviderObserver listener in listeners) {
+    for (StateObserver listener in listeners) {
       listener.onChanged();
     }
   }
