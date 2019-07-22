@@ -16,7 +16,7 @@ export 'src/json/json.dart';
 export 'src/lifecycle/init_callback.dart';
 
 // provider
-export 'src/provider/custom_provider.dart';
+export 'src/provider/state_provider.dart';
 
 // widgets
 export 'src/widgets/hbox.dart';

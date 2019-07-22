@@ -43,8 +43,7 @@ class StateObserver {
 }
 
 class BaseProvider {
-  final ObserverList<StateObserver> listeners =
-      ObserverList<StateObserver>();
+  final ObserverList<StateObserver> listeners = ObserverList<StateObserver>();
 
   bool get hasListeners => listeners.isNotEmpty;
 
