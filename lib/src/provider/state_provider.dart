@@ -12,8 +12,8 @@ class StateProvider<T extends BaseState> extends StatefulWidget {
       _StateProviderState<T>(state, builder);
 }
 
-class _StateProviderState<T extends BaseState>
-    extends State<StateProvider<T>> implements StateObserver {
+class _StateProviderState<T extends BaseState> extends State<StateProvider<T>>
+    implements StateObserver {
   final T state;
   final Widget Function(BuildContext context, T state) builder;
 
@@ -32,7 +32,11 @@ class _StateProviderState<T extends BaseState>
   }
 
   @override
-  void onChanged() => setState(() {});
+  void onChanged() {
+    if (mounted) {
+      setState(() {});
+    }
+  }
 
   @override
   Widget build(BuildContext context) => builder(context, state);

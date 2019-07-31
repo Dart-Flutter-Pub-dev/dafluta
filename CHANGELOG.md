@@ -63,3 +63,7 @@
 ## [1.8.0] - 2019-07-22
 
 * Renamed classes
+
+## [1.8.1] - 2019-07-31
+
+* Improved StateProvider
