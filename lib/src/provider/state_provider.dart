@@ -3,9 +3,12 @@ import 'package:flutter/material.dart';
 
 class StateProvider<T extends BaseState> extends StatefulWidget {
   final T state;
-  final Widget Function(BuildContext context, T state) builder;
+  final Widget Function(BuildContext, T) builder;
 
-  const StateProvider({this.state, this.builder});
+  const StateProvider({
+    @required this.state,
+    @required this.builder,
+  });
 
   @override
   _StateProviderState<T> createState() =>
@@ -15,7 +18,7 @@ class StateProvider<T extends BaseState> extends StatefulWidget {
 class _StateProviderState<T extends BaseState> extends State<StateProvider<T>>
     implements StateObserver {
   final T state;
-  final Widget Function(BuildContext context, T state) builder;
+  final Widget Function(BuildContext, T) builder;
 
   _StateProviderState(this.state, this.builder);
 

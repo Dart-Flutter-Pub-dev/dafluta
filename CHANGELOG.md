@@ -67,3 +67,7 @@
 ## [1.8.1] - 2019-07-31
 
 * Improved StateProvider
+
+## [1.8.2] - 2019-09-15
+
+* Code refactoring

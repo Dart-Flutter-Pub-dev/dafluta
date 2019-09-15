@@ -5,7 +5,5 @@ class DialogController {
 
   const DialogController(this._context);
 
-  void close() {
-    Navigator.of(_context).pop();
-  }
+  void close() => Navigator.of(_context).pop();
 }
