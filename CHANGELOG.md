@@ -76,3 +76,7 @@
 
 * Added empty widget
 * Removed unused classes
+
+## [1.9.1] - 2019-09-17
+
+* Fixed imports
