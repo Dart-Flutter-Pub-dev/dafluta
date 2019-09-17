@@ -1,8 +1,5 @@
 library dafluta;
 
-// dates
-export 'src/dates/dates.dart';
-
 // dialogs
 export 'src/dialogs/dialog_controller.dart';
 

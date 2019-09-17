@@ -71,3 +71,8 @@
 ## [1.8.2] - 2019-09-15
 
 * Code refactoring
+
+## [1.9.0] - 2019-09-17
+
+* Added empty widget
+* Removed unused classes

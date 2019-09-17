@@ -117,7 +117,7 @@ class Address {
 // =============================================================================
 
 Day dayParser(String value, {Day defaultValue}) {
-  return Enums.parse(Day.values, value, defaultValue: defaultValue);
+  return Enum.parse(Day.values, value, defaultValue: defaultValue);
 }
 
 enum Day { MONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY, SATURDAY, SUNDAY }
