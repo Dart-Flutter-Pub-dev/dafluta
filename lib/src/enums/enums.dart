@@ -8,16 +8,29 @@ class Enum {
 
   static String name(
     Object value, {
-    bool uppercase = true,
+    EnumMode mode = EnumMode.normal,
   }) {
-    final String name = value.toString();
+    final String name = value.toString().split('.').last;
 
-    if (uppercase && name.length >= 2) {
-      return '${name[0].toUpperCase()}${name.substring(1)}';
-    } else if (uppercase && name.isNotEmpty) {
-      return '${name[0].toUpperCase()}';
+    if (mode == EnumMode.lowercase) {
+      return name.toLowerCase();
+    } else if (mode == EnumMode.uppercase) {
+      return name.toUpperCase();
+    } else if (mode == EnumMode.capitalize) {
+      if (name.length >= 2) {
+        return '${name[0].toUpperCase()}${name.substring(1)}';
+      } else {
+        return name.toUpperCase();
+      }
     } else {
       return name;
     }
   }
+}
+
+enum EnumMode {
+  normal,
+  lowercase,
+  uppercase,
+  capitalize,
 }
