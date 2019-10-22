@@ -15,6 +15,9 @@ export 'src/lifecycle/init_callback.dart';
 // provider
 export 'src/provider/state_provider.dart';
 
+// status
+export 'src/status/status_bar.dart';
+
 // widgets
 export 'src/widgets/empty.dart';
 export 'src/widgets/hbox.dart';

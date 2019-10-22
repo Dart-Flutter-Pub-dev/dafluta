@@ -84,3 +84,7 @@
 ## [2.0.0] - 2019-09-18
 
 * Fixed enum utils
+
+## [2.1.0] - 2019-10-22
+
+* Added status bar widgets
