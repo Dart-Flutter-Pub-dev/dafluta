@@ -12,6 +12,9 @@ export 'src/json/json.dart';
 // lifecycle
 export 'src/lifecycle/init_callback.dart';
 
+// pages
+export 'src/pages/custom_page_transition.dart';
+
 // provider
 export 'src/provider/state_provider.dart';
 

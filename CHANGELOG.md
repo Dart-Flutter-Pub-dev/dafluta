@@ -88,3 +88,7 @@
 ## [2.1.0] - 2019-10-22
 
 * Added status bar widgets
+
+## [2.2.0] - 2019-11-15
+
+* Added page transition widgets
