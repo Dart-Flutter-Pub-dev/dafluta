@@ -24,4 +24,6 @@ export 'src/status/status_bar.dart';
 // widgets
 export 'src/widgets/empty.dart';
 export 'src/widgets/hbox.dart';
+export 'src/widgets/horizontal_divider.dart';
+export 'src/widgets/simple_list.dart';
 export 'src/widgets/vbox.dart';

@@ -92,3 +92,7 @@
 ## [2.2.0] - 2019-11-15
 
 * Added page transition widgets
+
+## [2.3.0] - 2019-11-22
+
+* Added new widgets

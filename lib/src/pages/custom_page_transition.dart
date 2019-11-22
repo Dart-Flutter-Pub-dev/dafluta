@@ -105,25 +105,56 @@ class CustomPageTransition<T> extends PageRouteBuilder<T> {
 }
 
 class FadeRoute<T> extends CustomPageTransition<T> {
-  FadeRoute(Widget child) : super(type: PageTransitionType.fade, child: child);
+  FadeRoute(
+    Widget child, {
+    Duration duration,
+  }) : super(
+          type: PageTransitionType.fade,
+          child: child,
+          duration: duration,
+        );
 }
 
 class RightLeftRoute<T> extends CustomPageTransition<T> {
-  RightLeftRoute(Widget child)
-      : super(type: PageTransitionType.rightToLeft, child: child);
+  RightLeftRoute(
+    Widget child, {
+    Duration duration,
+  }) : super(
+          type: PageTransitionType.rightToLeft,
+          child: child,
+          duration: duration,
+        );
 }
 
 class LeftRightRoute<T> extends CustomPageTransition<T> {
-  LeftRightRoute(Widget child)
-      : super(type: PageTransitionType.leftToRight, child: child);
+  LeftRightRoute(
+    Widget child, {
+    Duration duration,
+  }) : super(
+          type: PageTransitionType.leftToRight,
+          child: child,
+          duration: duration,
+        );
 }
 
 class UpDownRoute<T> extends CustomPageTransition<T> {
-  UpDownRoute(Widget child)
-      : super(type: PageTransitionType.upToDown, child: child);
+  UpDownRoute(
+    Widget child, {
+    Duration duration,
+  }) : super(
+          type: PageTransitionType.upToDown,
+          child: child,
+          duration: duration,
+        );
 }
 
 class DownUpRoute<T> extends CustomPageTransition<T> {
-  DownUpRoute(Widget child)
-      : super(type: PageTransitionType.downToUp, child: child);
+  DownUpRoute(
+    Widget child, {
+    Duration duration,
+  }) : super(
+          type: PageTransitionType.downToUp,
+          child: child,
+          duration: duration,
+        );
 }
