@@ -107,7 +107,7 @@ class CustomPageTransition<T> extends PageRouteBuilder<T> {
 class FadeRoute<T> extends CustomPageTransition<T> {
   FadeRoute(
     Widget child, {
-    Duration duration,
+    Duration duration = const Duration(milliseconds: 300),
   }) : super(
           type: PageTransitionType.fade,
           child: child,
@@ -118,7 +118,7 @@ class FadeRoute<T> extends CustomPageTransition<T> {
 class RightLeftRoute<T> extends CustomPageTransition<T> {
   RightLeftRoute(
     Widget child, {
-    Duration duration,
+    Duration duration = const Duration(milliseconds: 300),
   }) : super(
           type: PageTransitionType.rightToLeft,
           child: child,
@@ -129,7 +129,7 @@ class RightLeftRoute<T> extends CustomPageTransition<T> {
 class LeftRightRoute<T> extends CustomPageTransition<T> {
   LeftRightRoute(
     Widget child, {
-    Duration duration,
+    Duration duration = const Duration(milliseconds: 300),
   }) : super(
           type: PageTransitionType.leftToRight,
           child: child,
@@ -140,7 +140,7 @@ class LeftRightRoute<T> extends CustomPageTransition<T> {
 class UpDownRoute<T> extends CustomPageTransition<T> {
   UpDownRoute(
     Widget child, {
-    Duration duration,
+    Duration duration = const Duration(milliseconds: 300),
   }) : super(
           type: PageTransitionType.upToDown,
           child: child,
@@ -151,7 +151,7 @@ class UpDownRoute<T> extends CustomPageTransition<T> {
 class DownUpRoute<T> extends CustomPageTransition<T> {
   DownUpRoute(
     Widget child, {
-    Duration duration,
+    Duration duration = const Duration(milliseconds: 300),
   }) : super(
           type: PageTransitionType.downToUp,
           child: child,
