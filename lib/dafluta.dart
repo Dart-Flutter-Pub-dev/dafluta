@@ -6,9 +6,6 @@ export 'src/dialogs/dialog_controller.dart';
 // enums
 export 'src/enums/enums.dart';
 
-// json
-export 'src/json/json.dart';
-
 // lifecycle
 export 'src/lifecycle/init_callback.dart';
 

@@ -6,7 +6,5 @@ class VBox extends StatelessWidget {
   const VBox(this.size);
 
   @override
-  Widget build(BuildContext context) => SizedBox(
-        height: size,
-      );
+  Widget build(BuildContext context) => SizedBox(height: size);
 }

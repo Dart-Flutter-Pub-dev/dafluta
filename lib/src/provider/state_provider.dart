@@ -59,7 +59,7 @@ class BaseState {
   void removeListener(StateObserver listener) => listeners.remove(listener);
 
   void notify() {
-    for (StateObserver listener in listeners) {
+    for (final StateObserver listener in listeners) {
       listener.onChanged();
     }
   }

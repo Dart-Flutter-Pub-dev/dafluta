@@ -6,7 +6,5 @@ class HBox extends StatelessWidget {
   const HBox(this.size);
 
   @override
-  Widget build(BuildContext context) => SizedBox(
-        width: size,
-      );
+  Widget build(BuildContext context) => SizedBox(width: size);
 }

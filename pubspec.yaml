@@ -5,7 +5,7 @@ author: Mauricio Togneri <mauricio.togneri@gmail.com>
 homepage: https://github.com/mauriciotogneri/dafluta
 
 environment:
-  sdk: ">=2.5.0 <3.0.0"
+  sdk: ">=2.8.0 <3.0.0"
 
 dependencies:
 
