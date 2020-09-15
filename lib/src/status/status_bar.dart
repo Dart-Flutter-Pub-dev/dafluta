@@ -58,8 +58,7 @@ class CustomStatusBar extends StatelessWidget {
           : SystemUiOverlayStyle(
               systemNavigationBarColor: navigationBarColor,
               systemNavigationBarDividerColor: navigationBarDividerColor,
-              systemNavigationBarIconBrightness:
-                  navigationBarIconBrightness,
+              systemNavigationBarIconBrightness: navigationBarIconBrightness,
               statusBarColor: statusBarColor,
               statusBarBrightness: statusBarBrightness,
               statusBarIconBrightness: statusBarIconBrightness,

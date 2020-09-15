@@ -1,11 +1,10 @@
 name: dafluta_example
 description: Example code for the dafluta library.
 version: 1.0.0
-author: Mauricio Togneri <mauricio.togneri@gmail.com>
 homepage: https://github.com/mauriciotogneri/dafluta
 
 environment:
-  sdk: ">=2.5.0 <3.0.0"
+  sdk: ">=2.9.0 <3.0.0"
 
 dependencies:
 
