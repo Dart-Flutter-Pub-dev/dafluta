@@ -89,7 +89,7 @@ linter:
     - recursive_getters
     - slash_for_doc_comments
     - sort_child_properties_last
-    - sort_pub_dependencies
+    #- sort_pub_dependencies
     - throw_in_finally
     - type_annotate_public_apis
     - type_init_formals

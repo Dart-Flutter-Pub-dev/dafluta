@@ -104,3 +104,7 @@
 ## [2.6.0] - 2020-09-15
 
 * Code clean up
+
+## [2.7.0] - 2021-03-07
+
+* Added support for null safety
