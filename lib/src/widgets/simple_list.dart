@@ -5,8 +5,8 @@ class SimpleList<T> extends StatelessWidget {
   final Widget Function(BuildContext, int, T) builder;
 
   const SimpleList({
-    @required this.items,
-    @required this.builder,
+    required this.items,
+    required this.builder,
   });
 
   @override

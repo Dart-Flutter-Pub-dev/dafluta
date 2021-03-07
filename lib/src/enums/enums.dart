@@ -1,5 +1,5 @@
 class Enum {
-  static T parse<T>(List<T> list, String value, {T defaultValue}) {
+  static T parse<T>(List<T> list, String value, T defaultValue) {
     return list.firstWhere(
         (T e) =>
             e.toString().split('.')[1].toLowerCase() == value.toLowerCase(),

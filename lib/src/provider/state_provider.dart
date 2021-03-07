@@ -6,8 +6,8 @@ class StateProvider<T extends BaseState> extends StatefulWidget {
   final Widget Function(BuildContext, T) builder;
 
   const StateProvider({
-    @required this.state,
-    @required this.builder,
+    required this.state,
+    required this.builder,
   });
 
   @override

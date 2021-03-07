@@ -6,14 +6,11 @@ import 'package:dafluta/src/enums/enums.dart';
 void main() {
   group('enum', () {
     test('enums', () {
-      final Day day1 = dayParser('monday');
+      final Day day1 = dayParser('monday', Day.MONDAY);
       expect(day1, equals(Day.MONDAY));
 
-      final Day day2 = dayParser('xxx');
-      expect(day2, equals(null));
-
-      final Day day3 = dayParser('xxx', defaultValue: Day.SUNDAY);
-      expect(day3, equals(Day.SUNDAY));
+      final Day day2 = dayParser('xxx', Day.SUNDAY);
+      expect(day2, equals(Day.SUNDAY));
     });
   });
 }
@@ -61,8 +58,8 @@ class Address {
 
 // =============================================================================
 
-Day dayParser(String value, {Day defaultValue}) {
-  return Enum.parse(Day.values, value, defaultValue: defaultValue);
+Day dayParser(String value, Day defaultValue) {
+  return Enum.parse(Day.values, value, defaultValue);
 }
 
 enum Day { MONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY, SATURDAY, SUNDAY }

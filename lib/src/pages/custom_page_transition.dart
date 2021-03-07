@@ -16,8 +16,8 @@ class CustomPageTransition<T> extends PageRouteBuilder<T> {
   final Duration duration;
 
   CustomPageTransition({
-    @required this.type,
-    @required this.child,
+    required this.type,
+    required this.child,
     this.duration = const Duration(milliseconds: 300),
   }) : super(
           pageBuilder: (
@@ -52,7 +52,6 @@ class CustomPageTransition<T> extends PageRouteBuilder<T> {
     switch (type) {
       case PageTransitionType.fade:
         return FadeTransition(opacity: animation, child: child);
-        break;
 
       case PageTransitionType.rightToLeft:
         return SlideTransition(
@@ -63,7 +62,6 @@ class CustomPageTransition<T> extends PageRouteBuilder<T> {
           ).animate(animation),
           child: child,
         );
-        break;
 
       case PageTransitionType.leftToRight:
         return SlideTransition(
@@ -74,7 +72,6 @@ class CustomPageTransition<T> extends PageRouteBuilder<T> {
           ).animate(animation),
           child: child,
         );
-        break;
 
       case PageTransitionType.upToDown:
         return SlideTransition(
@@ -85,7 +82,6 @@ class CustomPageTransition<T> extends PageRouteBuilder<T> {
           ).animate(animation),
           child: child,
         );
-        break;
 
       case PageTransitionType.downToUp:
         return SlideTransition(
@@ -96,7 +92,6 @@ class CustomPageTransition<T> extends PageRouteBuilder<T> {
           ).animate(animation),
           child: child,
         );
-        break;
 
       default:
         return child;

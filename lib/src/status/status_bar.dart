@@ -4,7 +4,7 @@ import 'package:flutter/services.dart';
 class LightStatusBar extends StatelessWidget {
   final Widget child;
 
-  const LightStatusBar({@required this.child});
+  const LightStatusBar({required this.child});
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +18,7 @@ class LightStatusBar extends StatelessWidget {
 class DarkStatusBar extends StatelessWidget {
   final Widget child;
 
-  const DarkStatusBar({@required this.child});
+  const DarkStatusBar({required this.child});
 
   @override
   Widget build(BuildContext context) {
@@ -31,16 +31,16 @@ class DarkStatusBar extends StatelessWidget {
 
 class CustomStatusBar extends StatelessWidget {
   final Widget child;
-  final SystemUiOverlayStyle style;
-  final Color navigationBarColor;
-  final Color navigationBarDividerColor;
-  final Brightness navigationBarIconBrightness;
-  final Color statusBarColor;
-  final Brightness statusBarBrightness;
-  final Brightness statusBarIconBrightness;
+  final SystemUiOverlayStyle? style;
+  final Color? navigationBarColor;
+  final Color? navigationBarDividerColor;
+  final Brightness? navigationBarIconBrightness;
+  final Color? statusBarColor;
+  final Brightness? statusBarBrightness;
+  final Brightness? statusBarIconBrightness;
 
   const CustomStatusBar({
-    @required this.child,
+    required this.child,
     this.style,
     this.navigationBarColor,
     this.navigationBarDividerColor,
@@ -54,7 +54,7 @@ class CustomStatusBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return AnnotatedRegion<SystemUiOverlayStyle>(
       value: (style != null)
-          ? style
+          ? style!
           : SystemUiOverlayStyle(
               systemNavigationBarColor: navigationBarColor,
               systemNavigationBarDividerColor: navigationBarDividerColor,
