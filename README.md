@@ -8,5 +8,5 @@ Add the following dependency to your `pubspec.yaml`:
 
 ```yaml
 dev_dependencies:
-  dafluta: ^2.7.0
+  dafluta: ^2.8.0
 ```

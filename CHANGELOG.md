@@ -108,3 +108,7 @@
 ## [2.7.0] - 2021-03-07
 
 * Added support for null safety
+
+## [2.8.0] - 2021-05-15
+
+* Added new provider widgets

@@ -11,16 +11,16 @@ class StateProvider<T extends BaseState> extends StatefulWidget {
   });
 
   @override
-  _StateProviderState<T> createState() =>
-      _StateProviderState<T>(state, builder);
+  StateProviderState<T> createState() =>
+      StateProviderState<T>(state, builder);
 }
 
-class _StateProviderState<T extends BaseState> extends State<StateProvider<T>>
+class StateProviderState<T extends BaseState> extends State<StateProvider<T>>
     implements StateObserver {
   final T state;
   final Widget Function(BuildContext, T) builder;
 
-  _StateProviderState(this.state, this.builder);
+  StateProviderState(this.state, this.builder);
 
   @override
   void initState() {
