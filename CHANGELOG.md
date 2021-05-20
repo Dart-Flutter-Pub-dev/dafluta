@@ -112,3 +112,7 @@
 ## [2.8.0] - 2021-05-15
 
 * Added new provider widgets
+
+## [2.9.0] - 2021-05-20
+
+* Added new type aliases

@@ -11,8 +11,7 @@ class StateProvider<T extends BaseState> extends StatefulWidget {
   });
 
   @override
-  StateProviderState<T> createState() =>
-      StateProviderState<T>(state, builder);
+  StateProviderState<T> createState() => StateProviderState<T>(state, builder);
 }
 
 class StateProviderState<T extends BaseState> extends State<StateProvider<T>>

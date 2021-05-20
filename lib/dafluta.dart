@@ -18,6 +18,9 @@ export 'src/provider/state_provider.dart';
 // status
 export 'src/status/status_bar.dart';
 
+// types
+export 'src/types/types.dart';
+
 // widgets
 export 'src/widgets/empty.dart';
 export 'src/widgets/hbox.dart';
