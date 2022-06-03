@@ -126,3 +126,7 @@
 ## [3.1.0] - 2022-06-03
 
 * Added keyboard utils
+
+## [3.1.1] - 2022-06-03
+
+* Fixed imports
