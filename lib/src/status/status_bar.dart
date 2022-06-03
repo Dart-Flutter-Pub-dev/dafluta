@@ -3,11 +3,11 @@ import 'package:flutter/services.dart';
 
 class LightStatusBar extends StatelessWidget {
   final Widget child;
-  final Color? color;
+  final Color color;
 
   const LightStatusBar({
     required this.child,
-    this.color,
+    this.color = Colors.transparent,
   });
 
   @override
@@ -23,11 +23,11 @@ class LightStatusBar extends StatelessWidget {
 
 class DarkStatusBar extends StatelessWidget {
   final Widget child;
-  final Color? color;
+  final Color color;
 
   const DarkStatusBar({
     required this.child,
-    this.color,
+    this.color = Colors.transparent,
   });
 
   @override

@@ -130,3 +130,7 @@
 ## [3.1.1] - 2022-06-03
 
 * Fixed imports
+
+## [3.2.0] - 2022-06-03
+
+* Improved status bar
