@@ -1,7 +1,7 @@
-import 'package:flutter_test/flutter_test.dart';
 import 'package:collection/collection.dart';
-import 'package:meta/meta.dart';
 import 'package:dafluta/src/enums/enums.dart';
+import 'package:flutter_test/flutter_test.dart';
+import 'package:meta/meta.dart';
 
 void main() {
   group('enum', () {

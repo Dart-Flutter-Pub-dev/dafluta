@@ -1,7 +1,9 @@
 typedef Int = int;
-typedef Interger = int;
+typedef Integer = int;
+typedef Float = double;
 typedef Double = double;
 typedef Number = num;
 typedef Bool = bool;
 typedef Boolean = bool;
-typedef Json = Map<String, dynamic>;
+typedef JsonObject = Map<String, dynamic>;
+typedef JsonArray = List<JsonObject>;

@@ -116,3 +116,9 @@
 ## [2.9.0] - 2021-05-20
 
 * Added new type aliases
+
+## [3.0.0] - 2022-06-03
+
+* Improved status bar widget
+* Fixed types
+* Cleaned warnings

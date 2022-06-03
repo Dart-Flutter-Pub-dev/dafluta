@@ -3,13 +3,19 @@ import 'package:flutter/services.dart';
 
 class LightStatusBar extends StatelessWidget {
   final Widget child;
+  final Color? color;
 
-  const LightStatusBar({required this.child});
+  const LightStatusBar({
+    required this.child,
+    this.color,
+  });
 
   @override
   Widget build(BuildContext context) {
-    return AnnotatedRegion<SystemUiOverlayStyle>(
-      value: SystemUiOverlayStyle.dark,
+    return CustomStatusBar(
+      statusBarColor: color,
+      statusBarIconBrightness: Brightness.light,
+      statusBarBrightness: Brightness.dark,
       child: child,
     );
   }
@@ -17,13 +23,19 @@ class LightStatusBar extends StatelessWidget {
 
 class DarkStatusBar extends StatelessWidget {
   final Widget child;
+  final Color? color;
 
-  const DarkStatusBar({required this.child});
+  const DarkStatusBar({
+    required this.child,
+    this.color,
+  });
 
   @override
   Widget build(BuildContext context) {
-    return AnnotatedRegion<SystemUiOverlayStyle>(
-      value: SystemUiOverlayStyle.light,
+    return CustomStatusBar(
+      statusBarColor: color,
+      statusBarIconBrightness: Brightness.dark,
+      statusBarBrightness: Brightness.light,
       child: child,
     );
   }
