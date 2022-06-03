@@ -122,3 +122,7 @@
 * Improved status bar widget
 * Fixed types
 * Cleaned warnings
+
+## [3.1.0] - 2022-06-03
+
+* Added keyboard utils
