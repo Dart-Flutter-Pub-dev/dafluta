@@ -134,3 +134,7 @@
 ## [3.2.0] - 2022-06-03
 
 * Improved status bar
+
+## [3.3.0] - 2022-06-07
+
+* Renamed class

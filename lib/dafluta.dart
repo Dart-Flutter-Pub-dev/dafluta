@@ -10,7 +10,7 @@ export 'src/enums/enums.dart';
 export 'src/keyboard/keyboard.dart';
 
 // lifecycle
-export 'src/lifecycle/init_callback.dart';
+export 'src/lifecycle/delayed.dart';
 
 // pages
 export 'src/pages/custom_page_transition.dart';
