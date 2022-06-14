@@ -138,3 +138,7 @@
 ## [3.3.0] - 2022-06-07
 
 * Renamed class
+
+## [3.4.0] - 2022-06-14
+
+* Added RunOnce widget
