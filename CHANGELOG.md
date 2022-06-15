@@ -142,3 +142,7 @@
 ## [3.4.0] - 2022-06-14
 
 * Added RunOnce widget
+
+## [3.5.0] - 2022-06-15
+
+* Improved StateProvider

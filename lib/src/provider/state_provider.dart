@@ -1,3 +1,4 @@
+import 'package:dafluta/dafluta.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
@@ -51,7 +52,13 @@ class StateObserver {
 class BaseState {
   final ObserverList<StateObserver> listeners = ObserverList<StateObserver>();
 
+  BaseState() {
+    Delayed.post(onLoad);
+  }
+
   bool get hasListeners => listeners.isNotEmpty;
+
+  void onLoad() {}
 
   void addListener(StateObserver listener) => listeners.add(listener);
 
