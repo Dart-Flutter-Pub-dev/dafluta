@@ -60,9 +60,17 @@ class BaseState {
 
   void onLoad() {}
 
+  void onDestroy() {}
+
   void addListener(StateObserver listener) => listeners.add(listener);
 
-  void removeListener(StateObserver listener) => listeners.remove(listener);
+  void removeListener(StateObserver listener) {
+    listeners.remove(listener);
+
+    if (listeners.isEmpty) {
+      onDestroy();
+    }
+  }
 
   void notify() {
     for (final StateObserver listener in listeners) {

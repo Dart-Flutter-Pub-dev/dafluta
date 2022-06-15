@@ -146,3 +146,7 @@
 ## [3.5.0] - 2022-06-15
 
 * Improved StateProvider
+
+## [3.6.0] - 2022-06-15
+
+* Improved StateProvider
