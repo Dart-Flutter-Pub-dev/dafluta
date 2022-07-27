@@ -18,6 +18,9 @@ export 'src/pages/custom_page_transition.dart';
 // provider
 export 'src/provider/state_provider.dart';
 
+// routes
+export 'src/routes/route_detector.dart';
+
 // status
 export 'src/status/status_bar.dart';
 

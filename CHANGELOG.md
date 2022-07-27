@@ -150,3 +150,7 @@
 ## [3.6.0] - 2022-06-15
 
 * Improved StateProvider
+
+## [3.7.0] - 2022-07-27
+
+* Added route detector widget

@@ -3,6 +3,7 @@ library page_transition;
 import 'package:flutter/material.dart';
 
 enum PageTransitionType {
+  none,
   fade,
   rightToLeft,
   leftToRight,
@@ -50,6 +51,9 @@ class CustomPageTransition<T> extends PageRouteBuilder<T> {
     Widget child,
   ) {
     switch (type) {
+      case PageTransitionType.none:
+        return child;
+
       case PageTransitionType.fade:
         return FadeTransition(opacity: animation, child: child);
 
