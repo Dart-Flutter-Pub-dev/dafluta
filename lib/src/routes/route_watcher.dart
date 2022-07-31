@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class RouteDetector extends StatefulWidget {
+class RouteWatcher extends StatefulWidget {
   final Widget child;
   final Function(RouteAware, BuildContext) subscribe;
   final Function(RouteAware) unsubscribe;
@@ -9,7 +9,7 @@ class RouteDetector extends StatefulWidget {
   final VoidCallback? didPop;
   final VoidCallback? didPushNext;
 
-  const RouteDetector({
+  const RouteWatcher({
     required this.child,
     required this.subscribe,
     required this.unsubscribe,
@@ -20,10 +20,10 @@ class RouteDetector extends StatefulWidget {
   });
 
   @override
-  State<RouteDetector> createState() => _RouteDetectorState();
+  State<RouteWatcher> createState() => _RouteWatcherState();
 }
 
-class _RouteDetectorState extends State<RouteDetector> with RouteAware {
+class _RouteWatcherState extends State<RouteWatcher> with RouteAware {
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();

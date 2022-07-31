@@ -153,7 +153,7 @@
 
 ## [3.7.0] - 2022-07-27
 
-* Added route detector widget
+* Added route observer widget
 
 ## [3.8.0] - 2022-07-31
 
@@ -162,3 +162,15 @@
 ## [3.9.0] - 2022-07-31
 
 * Added Routes class
+
+## [4.0.0] - 2022-07-31
+
+* Added Lifecycle Observer
+
+## [4.0.1] - 2022-07-31
+
+* Renamed classes
+
+## [4.0.2] - 2022-07-31
+
+* Improved Lifecycle Observer

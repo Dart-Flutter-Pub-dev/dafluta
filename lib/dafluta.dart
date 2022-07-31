@@ -11,6 +11,7 @@ export 'src/keyboard/keyboard.dart';
 
 // lifecycle
 export 'src/lifecycle/delayed.dart';
+export 'src/lifecycle/lifecycle_watcher.dart';
 
 // pages
 export 'src/pages/custom_page_transition.dart';
@@ -19,7 +20,7 @@ export 'src/pages/custom_page_transition.dart';
 export 'src/provider/state_provider.dart';
 
 // routes
-export 'src/routes/route_detector.dart';
+export 'src/routes/route_watcher.dart';
 export 'src/routes/routes.dart';
 
 // status
