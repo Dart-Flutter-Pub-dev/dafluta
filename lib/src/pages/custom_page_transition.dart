@@ -15,12 +15,15 @@ class CustomPageTransition<T> extends PageRouteBuilder<T> {
   final PageTransitionType type;
   final Widget child;
   final Duration duration;
+  String? name;
 
   CustomPageTransition({
     required this.type,
     required this.child,
     this.duration = const Duration(milliseconds: 300),
+    this.name,
   }) : super(
+          settings: (name != null) ? RouteSettings(name: name) : null,
           pageBuilder: (
             BuildContext context,
             Animation<double> animation,
@@ -107,10 +110,12 @@ class FadeRoute<T> extends CustomPageTransition<T> {
   FadeRoute(
     Widget child, {
     Duration duration = const Duration(milliseconds: 300),
+    String? name,
   }) : super(
           type: PageTransitionType.fade,
           child: child,
           duration: duration,
+          name: name,
         );
 }
 
@@ -118,10 +123,12 @@ class RightLeftRoute<T> extends CustomPageTransition<T> {
   RightLeftRoute(
     Widget child, {
     Duration duration = const Duration(milliseconds: 300),
+    String? name,
   }) : super(
           type: PageTransitionType.rightToLeft,
           child: child,
           duration: duration,
+          name: name,
         );
 }
 
@@ -129,10 +136,12 @@ class LeftRightRoute<T> extends CustomPageTransition<T> {
   LeftRightRoute(
     Widget child, {
     Duration duration = const Duration(milliseconds: 300),
+    String? name,
   }) : super(
           type: PageTransitionType.leftToRight,
           child: child,
           duration: duration,
+          name: name,
         );
 }
 
@@ -140,10 +149,12 @@ class UpDownRoute<T> extends CustomPageTransition<T> {
   UpDownRoute(
     Widget child, {
     Duration duration = const Duration(milliseconds: 300),
+    String? name,
   }) : super(
           type: PageTransitionType.upToDown,
           child: child,
           duration: duration,
+          name: name,
         );
 }
 
@@ -151,9 +162,11 @@ class DownUpRoute<T> extends CustomPageTransition<T> {
   DownUpRoute(
     Widget child, {
     Duration duration = const Duration(milliseconds: 300),
+    String? name,
   }) : super(
           type: PageTransitionType.downToUp,
           child: child,
           duration: duration,
+          name: name,
         );
 }

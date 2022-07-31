@@ -154,3 +154,7 @@
 ## [3.7.0] - 2022-07-27
 
 * Added route detector widget
+
+## [3.8.0] - 2022-07-31
+
+* Improved Custom Page Transition
