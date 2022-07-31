@@ -158,3 +158,7 @@
 ## [3.8.0] - 2022-07-31
 
 * Improved Custom Page Transition
+
+## [3.9.0] - 2022-07-31
+
+* Added Routes class

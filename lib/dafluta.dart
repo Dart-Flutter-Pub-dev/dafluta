@@ -20,6 +20,7 @@ export 'src/provider/state_provider.dart';
 
 // routes
 export 'src/routes/route_detector.dart';
+export 'src/routes/routes.dart';
 
 // status
 export 'src/status/status_bar.dart';
