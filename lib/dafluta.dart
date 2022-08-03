@@ -8,6 +8,7 @@ export 'src/enums/enums.dart';
 
 // enums
 export 'src/keyboard/keyboard.dart';
+export 'src/keyboard/keyboard_controller.dart';
 
 // lifecycle
 export 'src/lifecycle/delayed.dart';

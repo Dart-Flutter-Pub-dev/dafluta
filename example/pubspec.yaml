@@ -1,6 +1,6 @@
 name: dafluta_example
 description: Example code for the dafluta library.
-version: 4.0.2
+version: 4.1.0
 homepage: https://github.com/mauriciotogneri/dafluta
 
 environment:
