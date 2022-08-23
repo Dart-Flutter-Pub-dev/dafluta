@@ -106,6 +106,19 @@ class CustomPageTransition<T> extends PageRouteBuilder<T> {
   }
 }
 
+class BasicRoute<T> extends CustomPageTransition<T> {
+  BasicRoute(
+    Widget child, {
+    Duration duration = const Duration(milliseconds: 300),
+    String? name,
+  }) : super(
+          type: PageTransitionType.none,
+          child: child,
+          duration: duration,
+          name: name,
+        );
+}
+
 class FadeRoute<T> extends CustomPageTransition<T> {
   FadeRoute(
     Widget child, {

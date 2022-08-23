@@ -175,6 +175,10 @@
 
 * Improved Lifecycle Observer
 
-## [4.1.02] - 2022-08-03
+## [4.1.0] - 2022-08-03
 
 * Added Keyboard Controller
+
+## [4.2.0] - 2022-08-23
+
+* Added new screen transition
