@@ -182,3 +182,7 @@
 ## [4.2.0] - 2022-08-23
 
 * Added new screen transition
+
+## [4.3.0] - 2022-09-24
+
+* Added empty url strategy
