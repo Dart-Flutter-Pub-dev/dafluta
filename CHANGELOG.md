@@ -186,3 +186,7 @@
 ## [4.3.0] - 2022-09-24
 
 * Added empty url strategy
+
+## [4.3.1] - 2022-09-24
+
+* Fixed imports
