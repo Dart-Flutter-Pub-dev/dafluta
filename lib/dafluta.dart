@@ -21,7 +21,6 @@ export 'src/pages/custom_page_transition.dart';
 export 'src/provider/state_provider.dart';
 
 // routes
-export 'src/routes/empty_url_strategy.dart';
 export 'src/routes/route_watcher.dart';
 export 'src/routes/routes.dart';
 
