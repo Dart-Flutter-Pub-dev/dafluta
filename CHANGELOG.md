@@ -194,3 +194,7 @@
 ## [4.4.0] - 2022-09-25
 
 * Removed empty url strategy
+
+## [4.5.1] - 2023-01-08
+
+* Fixed Dialog Controller

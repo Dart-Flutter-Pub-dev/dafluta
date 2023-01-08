@@ -1,0 +1,12 @@
+{
+    "workbench.colorTheme": "Default Dark+",
+    "workbench.editor.enablePreview": false,
+    "editor.minimap.enabled": false,
+    "editor.tabSize": 4,
+    "editor.fontSize": 16,
+    "editor.detectIndentation": false,
+    "editor.formatOnSave": true,
+    "editor.fontFamily": "'Source Code Pro'",
+    "files.autoSave": "afterDelay",
+    "dart.previewFlutterUiGuides": true
+}
