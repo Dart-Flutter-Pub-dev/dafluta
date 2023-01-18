@@ -170,3 +170,27 @@ class DownUpRoute<T> extends CustomPageTransition<T> {
           name: name,
         );
 }
+
+class PopRoute<T> extends CustomPageTransition<T> {
+  PopRoute(
+    Widget child, {
+    Duration duration = const Duration(milliseconds: 300),
+    String? name,
+  }) : super(
+          child: child,
+          transition: (
+            BuildContext context,
+            Animation<double> animation,
+            Widget child,
+          ) =>
+              ScaleTransition(
+            scale: animation,
+            child: FadeTransition(
+              opacity: animation,
+              child: child,
+            ),
+          ),
+          duration: duration,
+          name: name,
+        );
+}
