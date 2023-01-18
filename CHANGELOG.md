@@ -198,3 +198,7 @@
 ## [4.5.1] - 2023-01-08
 
 * Fixed Dialog Controller
+
+## [4.6.0] - 2023-01-18
+
+* Improved page transitions
