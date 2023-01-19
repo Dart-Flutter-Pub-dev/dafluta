@@ -206,3 +206,7 @@
 ## [4.6.1] - 2023-01-18
 
 * Improved page transitions
+
+## [4.7.0] - 2023-01-19
+
+* Improved page transitions

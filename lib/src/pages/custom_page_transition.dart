@@ -71,8 +71,8 @@ class FadeRoute<T> extends CustomPageTransition<T> {
         );
 }
 
-class RightLeftRoute<T> extends CustomPageTransition<T> {
-  RightLeftRoute(
+class RightLeftSlideRoute<T> extends CustomPageTransition<T> {
+  RightLeftSlideRoute(
     Widget child, {
     Duration duration = const Duration(milliseconds: 300),
     String? name,
@@ -86,7 +86,7 @@ class RightLeftRoute<T> extends CustomPageTransition<T> {
               SlideTransition(
             transformHitTests: false,
             position: Tween<Offset>(
-              begin: const Offset(1.0, 0.0),
+              begin: const Offset(1, 0),
               end: Offset.zero,
             ).animate(animation),
             child: child,
@@ -96,8 +96,8 @@ class RightLeftRoute<T> extends CustomPageTransition<T> {
         );
 }
 
-class LeftRightRoute<T> extends CustomPageTransition<T> {
-  LeftRightRoute(
+class LeftRightSlideRoute<T> extends CustomPageTransition<T> {
+  LeftRightSlideRoute(
     Widget child, {
     Duration duration = const Duration(milliseconds: 300),
     String? name,
@@ -111,7 +111,7 @@ class LeftRightRoute<T> extends CustomPageTransition<T> {
               SlideTransition(
             transformHitTests: false,
             position: Tween<Offset>(
-              begin: const Offset(-1.0, 0.0),
+              begin: const Offset(-1, 0),
               end: Offset.zero,
             ).animate(animation),
             child: child,
@@ -121,8 +121,8 @@ class LeftRightRoute<T> extends CustomPageTransition<T> {
         );
 }
 
-class UpDownRoute<T> extends CustomPageTransition<T> {
-  UpDownRoute(
+class UpDownSlideRoute<T> extends CustomPageTransition<T> {
+  UpDownSlideRoute(
     Widget child, {
     Duration duration = const Duration(milliseconds: 300),
     String? name,
@@ -136,7 +136,7 @@ class UpDownRoute<T> extends CustomPageTransition<T> {
               SlideTransition(
             transformHitTests: false,
             position: Tween<Offset>(
-              begin: const Offset(0.0, -1.0),
+              begin: const Offset(0, -1),
               end: Offset.zero,
             ).animate(animation),
             child: child,
@@ -146,8 +146,8 @@ class UpDownRoute<T> extends CustomPageTransition<T> {
         );
 }
 
-class DownUpRoute<T> extends CustomPageTransition<T> {
-  DownUpRoute(
+class DownUpSlideRoute<T> extends CustomPageTransition<T> {
+  DownUpSlideRoute(
     Widget child, {
     Duration duration = const Duration(milliseconds: 300),
     String? name,
@@ -161,10 +161,154 @@ class DownUpRoute<T> extends CustomPageTransition<T> {
               SlideTransition(
             transformHitTests: false,
             position: Tween<Offset>(
-              begin: const Offset(0.0, 1.0),
+              begin: const Offset(0, 1),
               end: Offset.zero,
             ).animate(animation),
             child: child,
+          ),
+          duration: duration,
+          name: name,
+        );
+}
+
+class RightLeftPushRoute<T> extends CustomPageTransition<T> {
+  RightLeftPushRoute(
+    Widget childNew,
+    Widget childCurrent, {
+    Duration duration = const Duration(milliseconds: 300),
+    String? name,
+  }) : super(
+          child: childNew,
+          transition: (
+            BuildContext context,
+            Animation<double> animation,
+            Widget child,
+          ) =>
+              Stack(
+            children: <Widget>[
+              SlideTransition(
+                position: Tween<Offset>(
+                  begin: Offset.zero,
+                  end: const Offset(-1, 0),
+                ).animate(animation),
+                child: childCurrent,
+              ),
+              SlideTransition(
+                position: Tween<Offset>(
+                  begin: const Offset(1, 0),
+                  end: Offset.zero,
+                ).animate(animation),
+                child: child,
+              )
+            ],
+          ),
+          duration: duration,
+          name: name,
+        );
+}
+
+class LeftRightPushRoute<T> extends CustomPageTransition<T> {
+  LeftRightPushRoute(
+    Widget childNew,
+    Widget childCurrent, {
+    Duration duration = const Duration(milliseconds: 300),
+    String? name,
+  }) : super(
+          child: childNew,
+          transition: (
+            BuildContext context,
+            Animation<double> animation,
+            Widget child,
+          ) =>
+              Stack(
+            children: <Widget>[
+              SlideTransition(
+                position: Tween<Offset>(
+                  begin: Offset.zero,
+                  end: const Offset(1, 0),
+                ).animate(animation),
+                child: childCurrent,
+              ),
+              SlideTransition(
+                position: Tween<Offset>(
+                  begin: const Offset(-1, 0),
+                  end: Offset.zero,
+                ).animate(animation),
+                child: child,
+              )
+            ],
+          ),
+          duration: duration,
+          name: name,
+        );
+}
+
+class UpDownPushRoute<T> extends CustomPageTransition<T> {
+  UpDownPushRoute(
+    Widget childNew,
+    Widget childCurrent, {
+    Duration duration = const Duration(milliseconds: 300),
+    String? name,
+  }) : super(
+          child: childNew,
+          transition: (
+            BuildContext context,
+            Animation<double> animation,
+            Widget child,
+          ) =>
+              Stack(
+            children: <Widget>[
+              SlideTransition(
+                position: Tween<Offset>(
+                  begin: Offset.zero,
+                  end: const Offset(0, 1),
+                ).animate(animation),
+                child: childCurrent,
+              ),
+              SlideTransition(
+                position: Tween<Offset>(
+                  begin: const Offset(0, -1),
+                  end: Offset.zero,
+                ).animate(animation),
+                child: child,
+              )
+            ],
+          ),
+          duration: duration,
+          name: name,
+        );
+}
+
+class DownUpPushRoute<T> extends CustomPageTransition<T> {
+  DownUpPushRoute(
+    Widget childNew,
+    Widget childCurrent, {
+    Duration duration = const Duration(milliseconds: 300),
+    String? name,
+  }) : super(
+          child: childNew,
+          transition: (
+            BuildContext context,
+            Animation<double> animation,
+            Widget child,
+          ) =>
+              Stack(
+            children: <Widget>[
+              SlideTransition(
+                position: Tween<Offset>(
+                  begin: Offset.zero,
+                  end: const Offset(0, -1),
+                ).animate(animation),
+                child: childCurrent,
+              ),
+              SlideTransition(
+                position: Tween<Offset>(
+                  begin: const Offset(0, 1),
+                  end: Offset.zero,
+                ).animate(animation),
+                child: child,
+              )
+            ],
           ),
           duration: duration,
           name: name,
