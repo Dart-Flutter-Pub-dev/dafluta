@@ -214,3 +214,7 @@
 ## [4.8.0] - 2023-01-20
 
 * Added Unclosable widget
+
+## [4.9.0] - 2023-02-10
+
+* Improved Enums class
