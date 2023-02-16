@@ -222,3 +222,7 @@
 ## [4.9.1] - 2023-02-13
 
 * Improved Enums class
+
+## [4.9.2] - 2023-02-16
+
+* Improved Enums class

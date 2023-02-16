@@ -1,9 +1,13 @@
 class Enums {
-  static T? parse<T extends Enum>(dynamic value, List<dynamic> values,
-      [T? defaultValue]) {
-    for (final dynamic current in values) {
-      if (current.code == value) {
-        return current;
+  static E? parse<E extends Enum, V>({
+    required V value,
+    required List<E> list,
+    required V Function(E) mapper,
+    E? defaultValue,
+  }) {
+    for (final E element in list) {
+      if (mapper(element) == value) {
+        return element;
       }
     }
 
