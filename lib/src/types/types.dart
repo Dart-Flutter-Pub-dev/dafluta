@@ -5,5 +5,3 @@ typedef Double = double;
 typedef Number = num;
 typedef Bool = bool;
 typedef Boolean = bool;
-typedef JsonObject = Map<String, dynamic>;
-typedef JsonArray = List<JsonObject>;

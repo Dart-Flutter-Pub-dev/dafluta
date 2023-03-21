@@ -1,10 +1,10 @@
 name: dafluta_example
 description: Example code for the dafluta library.
-version: 4.9.2
+version: 4.9.3
 homepage: https://github.com/mauriciotogneri/dafluta
 
 environment:
-  sdk: '>=2.19.2 <3.0.0'
+  sdk: '>=2.19.4 <3.0.0'
 
 dependencies:
 
