@@ -230,3 +230,7 @@
 ## [4.9.3] - 2023-03-21
 
 * Removed JSON types
+
+## [5.0.0] - 2023-03-22
+
+* Added JSON classes
