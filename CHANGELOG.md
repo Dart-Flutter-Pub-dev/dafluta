@@ -234,3 +234,7 @@
 ## [5.0.0] - 2023-03-22
 
 * Added JSON classes
+
+## [5.1.1] - 2023-03-24
+
+* Added MapList class

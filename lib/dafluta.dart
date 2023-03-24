@@ -1,5 +1,8 @@
 library dafluta;
 
+// data
+export 'src/data/map_list.dart';
+
 // dialogs
 export 'src/dialogs/dialog_controller.dart';
 
