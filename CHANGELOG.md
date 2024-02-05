@@ -238,3 +238,7 @@
 ## [5.1.1] - 2023-03-24
 
 * Added MapList class
+
+## [5.2.0] - 2024-02-05
+
+* Improved LifecycleWatcher

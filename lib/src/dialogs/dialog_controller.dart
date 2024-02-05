@@ -7,7 +7,7 @@ class DialogController {
 
   void close() {
     if (_context != null) {
-      Navigator.of(_context!).pop();
+      Navigator.of(_context).pop();
     }
   }
 }

@@ -3,10 +3,12 @@ import 'package:flutter/material.dart';
 class LifecycleWatcher extends StatefulWidget {
   final Widget child;
   final Function(AppLifecycleState) onChange;
+  final VoidCallback? onPopRoute;
 
   const LifecycleWatcher({
     required this.child,
     required this.onChange,
+    this.onPopRoute,
   });
 
   @override
@@ -30,6 +32,13 @@ class _LifecycleWatcherState extends State<LifecycleWatcher>
   @override
   void didChangeAppLifecycleState(AppLifecycleState appState) =>
       widget.onChange(appState);
+
+  @override
+  Future<bool> didPopRoute() {
+    widget.onPopRoute?.call();
+
+    return Future<bool>.value(false);
+  }
 
   @override
   Widget build(BuildContext context) => widget.child;
