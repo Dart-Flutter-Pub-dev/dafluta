@@ -77,4 +77,6 @@ class BaseState {
       listener.onChanged();
     }
   }
+
+  void delayedNotify() => Delayed.post(notify);
 }

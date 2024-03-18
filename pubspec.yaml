@@ -1,10 +1,10 @@
 name: dafluta
 description: A set of Flutter util classes and methods that are commonly used in projects.
-version: 5.2.0
+version: 5.3.0
 homepage: https://github.com/mauriciotogneri/dafluta
 
 environment:
-  sdk: '>=3.2.6 <4.0.0'
+  sdk: '>=3.3.1 <4.0.0'
 
 dependencies:
   flutter:

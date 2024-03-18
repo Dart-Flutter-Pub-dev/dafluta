@@ -242,3 +242,7 @@
 ## [5.2.0] - 2024-02-05
 
 * Improved LifecycleWatcher
+
+## [5.3.0] - 2024-03-16
+
+* Improved StateProvider
