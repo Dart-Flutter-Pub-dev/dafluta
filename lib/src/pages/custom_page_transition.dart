@@ -7,14 +7,21 @@ class CustomPageTransition<T> extends PageRouteBuilder<T> {
   final Widget Function(BuildContext, Animation<double>, Widget) transition;
   final Duration duration;
   String? name;
+  Object? arguments;
 
   CustomPageTransition({
     required this.child,
     required this.transition,
     this.duration = const Duration(milliseconds: 300),
     this.name,
+    this.arguments,
   }) : super(
-          settings: (name != null) ? RouteSettings(name: name) : null,
+          settings: (name != null) || (arguments != null)
+              ? RouteSettings(
+                  name: name,
+                  arguments: arguments,
+                )
+              : null,
           pageBuilder: (
             BuildContext context,
             Animation<double> animation,
@@ -37,6 +44,7 @@ class BasicRoute<T> extends CustomPageTransition<T> {
     Widget child, {
     Duration duration = const Duration(milliseconds: 300),
     String? name,
+    Object? arguments,
   }) : super(
           child: child,
           transition: (
@@ -47,6 +55,7 @@ class BasicRoute<T> extends CustomPageTransition<T> {
               child,
           duration: duration,
           name: name,
+          arguments: arguments,
         );
 }
 
@@ -55,6 +64,7 @@ class FadeRoute<T> extends CustomPageTransition<T> {
     Widget child, {
     Duration duration = const Duration(milliseconds: 300),
     String? name,
+    Object? arguments,
   }) : super(
           child: child,
           transition: (
@@ -68,6 +78,7 @@ class FadeRoute<T> extends CustomPageTransition<T> {
           ),
           duration: duration,
           name: name,
+          arguments: arguments,
         );
 }
 
@@ -76,6 +87,7 @@ class RightLeftSlideRoute<T> extends CustomPageTransition<T> {
     Widget child, {
     Duration duration = const Duration(milliseconds: 300),
     String? name,
+    Object? arguments,
   }) : super(
           child: child,
           transition: (
@@ -93,6 +105,7 @@ class RightLeftSlideRoute<T> extends CustomPageTransition<T> {
           ),
           duration: duration,
           name: name,
+          arguments: arguments,
         );
 }
 
@@ -101,6 +114,7 @@ class LeftRightSlideRoute<T> extends CustomPageTransition<T> {
     Widget child, {
     Duration duration = const Duration(milliseconds: 300),
     String? name,
+    Object? arguments,
   }) : super(
           child: child,
           transition: (
@@ -118,6 +132,7 @@ class LeftRightSlideRoute<T> extends CustomPageTransition<T> {
           ),
           duration: duration,
           name: name,
+          arguments: arguments,
         );
 }
 
@@ -126,6 +141,7 @@ class UpDownSlideRoute<T> extends CustomPageTransition<T> {
     Widget child, {
     Duration duration = const Duration(milliseconds: 300),
     String? name,
+    Object? arguments,
   }) : super(
           child: child,
           transition: (
@@ -143,6 +159,7 @@ class UpDownSlideRoute<T> extends CustomPageTransition<T> {
           ),
           duration: duration,
           name: name,
+          arguments: arguments,
         );
 }
 
@@ -151,6 +168,7 @@ class DownUpSlideRoute<T> extends CustomPageTransition<T> {
     Widget child, {
     Duration duration = const Duration(milliseconds: 300),
     String? name,
+    Object? arguments,
   }) : super(
           child: child,
           transition: (
@@ -168,6 +186,7 @@ class DownUpSlideRoute<T> extends CustomPageTransition<T> {
           ),
           duration: duration,
           name: name,
+          arguments: arguments,
         );
 }
 
@@ -177,6 +196,7 @@ class RightLeftPushRoute<T> extends CustomPageTransition<T> {
     Widget childCurrent, {
     Duration duration = const Duration(milliseconds: 300),
     String? name,
+    Object? arguments,
   }) : super(
           child: childNew,
           transition: (
@@ -204,6 +224,7 @@ class RightLeftPushRoute<T> extends CustomPageTransition<T> {
           ),
           duration: duration,
           name: name,
+          arguments: arguments,
         );
 }
 
@@ -213,6 +234,7 @@ class LeftRightPushRoute<T> extends CustomPageTransition<T> {
     Widget childCurrent, {
     Duration duration = const Duration(milliseconds: 300),
     String? name,
+    Object? arguments,
   }) : super(
           child: childNew,
           transition: (
@@ -240,6 +262,7 @@ class LeftRightPushRoute<T> extends CustomPageTransition<T> {
           ),
           duration: duration,
           name: name,
+          arguments: arguments,
         );
 }
 
@@ -249,6 +272,7 @@ class UpDownPushRoute<T> extends CustomPageTransition<T> {
     Widget childCurrent, {
     Duration duration = const Duration(milliseconds: 300),
     String? name,
+    Object? arguments,
   }) : super(
           child: childNew,
           transition: (
@@ -276,6 +300,7 @@ class UpDownPushRoute<T> extends CustomPageTransition<T> {
           ),
           duration: duration,
           name: name,
+          arguments: arguments,
         );
 }
 
@@ -285,6 +310,7 @@ class DownUpPushRoute<T> extends CustomPageTransition<T> {
     Widget childCurrent, {
     Duration duration = const Duration(milliseconds: 300),
     String? name,
+    Object? arguments,
   }) : super(
           child: childNew,
           transition: (
@@ -312,6 +338,7 @@ class DownUpPushRoute<T> extends CustomPageTransition<T> {
           ),
           duration: duration,
           name: name,
+          arguments: arguments,
         );
 }
 
@@ -320,6 +347,7 @@ class PopRoute<T> extends CustomPageTransition<T> {
     Widget child, {
     Duration duration = const Duration(milliseconds: 300),
     String? name,
+    Object? arguments,
   }) : super(
           child: child,
           transition: (
@@ -336,5 +364,6 @@ class PopRoute<T> extends CustomPageTransition<T> {
           ),
           duration: duration,
           name: name,
+          arguments: arguments,
         );
 }

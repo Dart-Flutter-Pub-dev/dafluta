@@ -246,3 +246,7 @@
 ## [5.3.0] - 2024-03-16
 
 * Improved StateProvider
+
+## [5.4.0] - 2024-08-06
+
+* Added arguments parameter to routes
