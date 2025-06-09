@@ -40,6 +40,7 @@ export 'src/types/types.dart';
 export 'src/widgets/empty.dart';
 export 'src/widgets/hbox.dart';
 export 'src/widgets/horizontal_divider.dart';
+export 'src/widgets/on_close.dart';
 export 'src/widgets/run_once.dart';
 export 'src/widgets/simple_list.dart';
 export 'src/widgets/unclosable.dart';

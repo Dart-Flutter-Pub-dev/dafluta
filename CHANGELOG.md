@@ -251,6 +251,6 @@
 
 * Added arguments parameter to routes
 
-## [5.5.0] - 2025-06-09
+## [5.5.1] - 2025-06-09
 
 * Added OnClose widget
