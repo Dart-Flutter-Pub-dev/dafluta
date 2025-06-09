@@ -5,10 +5,7 @@ class LightStatusBar extends StatelessWidget {
   final Widget child;
   final Color color;
 
-  const LightStatusBar({
-    required this.child,
-    this.color = Colors.transparent,
-  });
+  const LightStatusBar({required this.child, this.color = Colors.transparent});
 
   @override
   Widget build(BuildContext context) {
@@ -25,10 +22,7 @@ class DarkStatusBar extends StatelessWidget {
   final Widget child;
   final Color color;
 
-  const DarkStatusBar({
-    required this.child,
-    this.color = Colors.transparent,
-  });
+  const DarkStatusBar({required this.child, this.color = Colors.transparent});
 
   @override
   Widget build(BuildContext context) {

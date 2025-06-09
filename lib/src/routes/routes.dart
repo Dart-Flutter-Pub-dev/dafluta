@@ -27,8 +27,9 @@ class Routes {
   void popUntil(RoutePredicate predicate) =>
       key.currentState?.popUntil(predicate);
 
-  void popUntilName(String routeName) => key.currentState
-      ?.popUntil((Route<dynamic> route) => route.settings.name == routeName);
+  void popUntilName(String routeName) => key.currentState?.popUntil(
+    (Route<dynamic> route) => route.settings.name == routeName,
+  );
 
   Future<T?>? push<T>(Route<T> route) => key.currentState?.push(route);
 
@@ -38,13 +39,9 @@ class Routes {
   Future<T?>? pushAndRemoveUntil<T>(
     Route<T> newRoute,
     RoutePredicate predicate,
-  ) =>
-      key.currentState?.pushAndRemoveUntil(newRoute, predicate);
+  ) => key.currentState?.pushAndRemoveUntil(newRoute, predicate);
 
-  Future<T?>? pushAndRemoveUntilName<T>(
-    Route<T> newRoute,
-    String routeName,
-  ) =>
+  Future<T?>? pushAndRemoveUntilName<T>(Route<T> newRoute, String routeName) =>
       key.currentState?.pushAndRemoveUntil(
         newRoute,
         (Route<dynamic> route) => route.settings.name == routeName,

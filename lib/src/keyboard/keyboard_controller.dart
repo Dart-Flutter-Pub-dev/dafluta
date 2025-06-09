@@ -8,9 +8,6 @@ class KeyboardController extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () => Keyboard.hide(context),
-      child: child,
-    );
+    return GestureDetector(onTap: () => Keyboard.hide(context), child: child);
   }
 }

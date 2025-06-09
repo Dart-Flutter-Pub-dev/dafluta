@@ -4,10 +4,7 @@ class RunOnce extends StatefulWidget {
   final VoidCallback function;
   final Widget child;
 
-  const RunOnce({
-    required this.function,
-    required this.child,
-  });
+  const RunOnce({required this.function, required this.child});
 
   @override
   State<RunOnce> createState() => _RunOnceState();
