@@ -1,10 +1,10 @@
 name: dafluta_example
 description: Example code for the dafluta library.
-version: 5.5.1
+version: 5.6.0
 homepage: https://github.com/mauriciotogneri/dafluta
 
 environment:
-  sdk: ">=3.8.1 <4.0.0"
+  sdk: ">=3.9.2 <4.0.0"
 
 dependencies:
   flutter:

@@ -254,3 +254,7 @@
 ## [5.5.1] - 2025-06-09
 
 * Added OnClose widget
+
+## [5.6.0] - 2025-09-19
+
+* Added IterableMap

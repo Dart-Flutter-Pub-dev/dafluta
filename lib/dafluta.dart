@@ -1,6 +1,7 @@
 library dafluta;
 
 // data
+export 'src/data/iterable_map.dart';
 export 'src/data/map_list.dart';
 
 // dialogs
